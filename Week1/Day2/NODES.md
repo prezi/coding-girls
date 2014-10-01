@@ -46,7 +46,7 @@ Extra: jatszadozzanak a szamokkal. A mentorok segithetnek nekik a kreativkoasban
 
 setup függvény bevezetése
 
-függvények: background
+függvények: background, size
 
 ### MyFirstTriangle.pde
 
