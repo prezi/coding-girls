@@ -68,3 +68,12 @@ Mi van akkor ha nem kapcsoljuk ki a fillt?
 
 Cél: Házikó rajzolása
 Extra: rajzoljunk ablakokat ajtót, több házat, napot, minden retket.
+
+### Ha marad ido
+
+
+### Hazi feladatok
+
+Rajzoltunk hazikot. Ha valaki nem egeszitette volna ki frankora, akkor tegye meg. Rajzoljon mindenki valami emberszerut. Legyen test, fej, vegtagok.
+
+Szorgalmi: Tanulmanyozza [ezt](http://processing.org/examples/shapeprimitives.html) az oldalt. Hasznalja fel ezeket az alakzatokat az ember lerajzolasara. Ha van kedve lehet kubista.
