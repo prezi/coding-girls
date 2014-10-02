@@ -71,6 +71,15 @@ Extra: rajzoljunk ablakokat ajtót, több házat, napot, minden retket.
 
 ### Ha marad ido
 
+Bedobni a draw fuggvenyt
+
+#### Kor kozepe az egeren
+
+Kor kozepe legyen az eger kozeppontjan
+
+Kerdes: hogy lehetne, hogy ne rajzoljon a program egymasra koroket?
+
+#### Kor merete valtozzon az eger helyzete szerint
 
 ### Hazi feladatok
 
