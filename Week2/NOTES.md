@@ -40,7 +40,7 @@ A formula egyszeru, de nagyszeru:
     - Ez egy utasitas, nem felejtjuk le a pontyosvesszot!
 
 Pelda:
-```Processing
+```Java
 
 // Rogton adok egy erteket a kedvenc szamomnak, mivel nagyon szeretem.
 // Figyeljunk a sokatmondo vatozonevekre!
@@ -61,7 +61,7 @@ Programozok fontos eszkoze. Sokszor nem tudjuk, hogy szamilag mi is tortenik a h
 
 Cel: a programban levo esemenyek kovetese szemmel.
 
-```Processing
+```Java
 void setup() {
   
   // Szam
@@ -87,7 +87,7 @@ void setup() {
 
 (Majdnem)minden jatszik amit csak el tudtok kepzelni matekorarol. Nezzuk az `int`-eket:
 
-```Processing
+```Java
 // Altalanos -1.: osszeadas
 int egyJopofaSzam = 6;
 int ketJopofaSzamOsszege = egyJopofaSzam + 28;
@@ -119,7 +119,7 @@ println(9 / 2);
 
 A kulonbseg `int` es `float` kozott istenigazan csak az osztasban van muveletek szempontjabol:
 
-```Processing
+```Java
 // Szerencsere itt nem egeszet fogunk visszakapni
 float ketSzuperSzamHanyadosa = 3.141592 / 2.718781; // pi / e
 println(ketSzuperSzamHanyadosa);
@@ -131,7 +131,7 @@ Vegre vege az elmeletnek! Johet a mokazas!
 
 Mire is jo nekunk a valtozo? A valtozokat felhasznalhatjuk peldaul egy kornek a parameterekent:
 
-```Processing
+```Java
 void setup() {
     size(800, 600);
 
@@ -148,7 +148,7 @@ Miert is jo ez? Ugye tanultuk, hogy a `draw` fuggveny folytonfolyvast meghivodik
 
 Elkalandoztam. Szoval ez azert jo nekunk, mert ha a `draw()`-ban vegzunk valtoztatasokat egy valtozon, akkor az mindig eletbe fog lepni! Nezzunk egy egyszeru peldat:
 
-```Processing
+```Java
 int korAtmeroje = 0;
 
 void setup() {
@@ -167,7 +167,7 @@ void draw() {
 
 Hasonloan itt egy masik pelda:
 
-```Processing
+```Java
 int ellipszisAtmerojeX = 0;
 int ellipszisAtmerojeY = 600;
 
@@ -191,7 +191,7 @@ void draw() {
 
 A Processing alkalmas arra, hogy veletlenszeru szamokat adjon vissza nekunk egy `random` nevezetu metodus segitsegevel. Egeszen jopofa dolgokat lehet vele csinalni:
 
-```Processing
+```Java
 int negyzetCsucsaX;
 int negyzetCsucsaY;
 
@@ -223,7 +223,7 @@ Van meg ket fontos tipus amit sokat fogunk hasznalni. Az egyik a `PImage`, ami k
 
 Kepeket letolthetjuk az internetrol. Ekkor a Processing minden futtatas elejen letolni a kepet a memoriaba.
 
-```Processing
+```Java
 PImage viccesMacskasKep;
 
 void setup() {
@@ -237,13 +237,13 @@ void setup() {
 
 Kepeket betolthetunk a fajlrendzerbol is. Ekkor letre kell hoznunk egy `data` konyvtarat a pde file mellett, es oda kell helyezni a filet.
 
-```Processing
-PImage viccesMacskasKep;
+```Java
+PImage viccesKutyasKep;
 
 void setup() {
     size(640, 480);
-    viccesMacskasKep = loadImage("https://malialitman.files.wordpress.com/2014/06/funny-dog-one.jpg");
-    image(viccesMacskasKep, 0, 0);
+    viccesKutyasKep = loadImage("https://malialitman.files.wordpress.com/2014/06/funny-dog-one.jpg");
+    image(viccesKutyasKep, 0, 0);
 }
 ```
 
@@ -251,7 +251,7 @@ void setup() {
 
 Color valtozoba tudjuk menteni a szineinket.
 
-```Processing
+```Java
 color azEgSzine = #82A1DB;
 void setup() {
     bacground(azEgSzine);
@@ -263,7 +263,7 @@ void setup() {
 Feladat: csinaljunk egy olyan programot, ahol egy kep (vagy alakzat, pl. kor) orommel koveti a kurzorunkat. Ez alapjaban veve nem lenne nehez, igy a celunk az lesz, hogy "smooth" legyen a kovetes.
 
 Rendicsek. Legyunk okos programozok, es probaljuk meg lepesrol lepesre megoldani a problemat. Kezdjuk mondjuk azzal amit elvarunk vegeredmenykent: legyen a kor kozeppontja az eger pozicioja.
-```Processing
+```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
 
@@ -280,7 +280,7 @@ void draw() {
 ```
 
 Ez nem volt tul izzaszto. Mivel a kor kozeppontja valtoni fog majd az idovel, ezert lehet erdemes lenne kiemelni egy valtozoba.
-```Processing
+```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
 
@@ -301,8 +301,7 @@ void draw() {
 ```
 
 Szuper, mostmar elkezhetunk vele szamolgatni. Mit is akarunk majd? Hogy a kor kozepe valahogy valtozzon az eger poziciojahoz kepest.
-```Processing
-
+```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
 
@@ -326,7 +325,7 @@ void draw() {
 ```
 
 Mit is csinaltunk? A kor kozepe mindig novekedni fog az eger kozeppontja es a kor kozepenek a kulonbsegevel. Ha a kulonbseg 0, akkor a ketto pont ugyanazon a ponton van. Ez minden 2. frameben igaz is lesz, ha atgondoljuk egy picit. Igy gyakorlatilag van egy olyan programunk, ahol a kor kozeppontja szinte rogton odaugrik az egerre. Lassitsuk hat le!
-```Processing
+```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
 
