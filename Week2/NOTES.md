@@ -19,12 +19,12 @@ Ugyanigy megy ez a programozasban is. Ennel kicsit konkretabb adatokkal (de ez n
 
 #### Milyen beepitett tipusok vannak?
 
-|Tipus neve|Processing-beli neve|Pelda|   |
-|---|---|---|---|
-|Egesz szam|int|42|   |
-|Lebegopontos szam|float|3.14|   |
-|Karakter|char|'a'|   |
-|Szoveg|String|"Coding Girls"|   |
+|Tipus neve|Processing-beli neve|Pelda|
+|---|---|---|
+|Egesz szam|int|42|
+|Lebegopontos szam|float|3.14|
+|Karakter|char|'a'|
+|Szoveg|String|"Coding Girls"|
 
 #### Hogyan csinalunk valtozokat?
 
