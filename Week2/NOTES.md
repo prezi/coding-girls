@@ -359,5 +359,6 @@ A kovetesi hanyados fogja meghatarozni, hogy mennyire kovetjuk gyorsan az egeret
 2. Szeretjuk a veletlen szamokat. Fejlesszunk egy olyan programot ami jol demonstralja, hogy milyen veletlenseggel mozognak az alakzatok! Legyen tobb mozgo elemunk. **BONUS**: gondolkozzunk el rajta, hogy hogy lehetne a vasznon jelolni a mozgast.
 
 Szorgalmi: 
+
 1. Lehetne valahogy gravitaciot szimulalni az eddig tanultakkal?
 2. Nezzetek meg a `noise` fuggvenyt es probaljatok meg felhasznalni valamilyen mozgasnal. Tipp: akkor lesz harmonikus, ha valamilyen korabbi valtozot hasznaltok fel parameterkent.
