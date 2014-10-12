@@ -22,7 +22,7 @@ A boolean tipusu valtozoknak erteke lehet `true` vagy `false`. `true` abban az e
 
 ```Java
 boolean kekAzEg = true;
-printn(kekAzEg);
+println(kekAzEg);
 
 boolean pirosAViz = false; // remeljuk tenyleg
 println(pirosAViz);
@@ -50,8 +50,8 @@ println(faradtVagyokMintAtom); // false
 boolean joKedvemVan = true;
 boolean joVoltAKoncert = false;
 
-boolean eppenTapsolok = joKedvemVan && joVoltAKoncert;
-println(faradtVagyokMintAtom);
+boolean eppenTapsolok = joKedvemVan || joVoltAKoncert;
+println(faradtVagyokMintAtom);//true
 ```
 
 - **Nem**: unaris logikai muvelet. Ez azt jelenti, hogy egy logikai valtozohoz vagy kifejezeshez tudjuk csatolni, ekkor azt tagadja.  Processing-beli jelolese: `!`.
