@@ -7,15 +7,7 @@
 
 Mi az a valtozo?
 
-Kepzeljunk el ket ketrecet. Az egyikbe csak egy macska, a masikba csak egy kutya fer bele. Ezekbol a ketrecekbol lehet tobb darab is, egy allatmenhelyen peldaul a sorszammal hatarozzak meg.
-
-```Processing
-Kutyaketrec 0001 = kutya1;
-Kutyaketrec 0002 = kutya2;
-Macskaketrec 0001 = macska1;
-```
-
-Ugyanigy megy ez a programozasban is. Ennel kicsit konkretabb adatokkal (de ez nem akadalyoz minket meg abban, hogy legyen kutya vagy macska tipusunk).
+Kepzeljunk el ket ketrecet. Az egyikbe csak egy macska, a masikba csak egy kutya fer bele. Ezekbol a ketrecekbol lehet tobb darab is, egy allatmenhelyen peldaul a sorszammal hatarozzak meg. Kutya-1 a kutyaketrec 0001-ben van, kutya-2 a kutyaketrec 0002-ben, macska-1 a macskaketrec 0001-ben.  Ugyanigy megy ez a programozasban is, csak különleges szavakkal: a kutya vagy a macska a _tipus_ és a ketrec a _változó_.
 
 #### Milyen beepitett tipusok vannak?
 
@@ -33,11 +25,11 @@ A formula egyszeru, de nagyszeru:
     - Megmondjuk mi a tipusunk
     - Adunk egy nevet a tarolonak
 
-        A nevet erdemes sokatmondonak valasztani. Nem baj ha tul hosszu, a cel, hogy aki olvassa a kodot az tudja, hogy mirol van szo!
+A nevet erdemes sokatmondonak valasztani. Nem baj ha tul hosszu, a cel, hogy aki olvassa a kodot az tudja, hogy mirol van szo!
 
     - Tegyunk egy egyenloseg jelet (=). Ezzel jeloljuk, hogy ebbe a valtozoba erteket szeretnenk rakni
     - Adjuk meg az erteket amit be akarunk tolteni.
-    - Ez egy utasitas, nem felejtjuk le a pontyosvesszot!
+    - Ez egy utasitas, nem felejtjuk le a pontosvesszot!
 
 Pelda:
 ```Java
@@ -106,6 +98,11 @@ vanEnnyiAlmam += megettemBeloleEnnyit; // ugyanaz mint: vanEnnyiAlmam = vanEnnyi
 // Az 1-el valo novelesre es csokkentesre is van gyorsgomb!
 --vanEnnyiAlmam; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam - 1
 ++vanEnnyiAlmam; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam + 1
+```
+
+Itt érdemes megállni egy kicsit és megbeszélni, hogy ennek miért van értelme? Mert matekórán ugye azt tanítják, hogyha x = x - 1, abból következik, hogy 0 = -1. Tehát fontos emlékezni, hogy ami a jobb oldalon van írva, az történik először, és az egyenlőség jele valójában nem egyenlőseget jelent, hanem értékadás.
+
+```Java
 
 // Meg mindig altalanos 0.: szorzas.
 int elegKisFaktorialis = 1 * 2 * 3 * 4 * 5 * 6;
