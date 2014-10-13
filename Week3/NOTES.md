@@ -51,7 +51,7 @@ boolean joKedvemVan = true;
 boolean joVoltAKoncert = false;
 
 boolean eppenTapsolok = joKedvemVan || joVoltAKoncert;
-println(faradtVagyokMintAtom);//true
+println(eppenTapsolok);//true
 ```
 
 - **Nem**: unaris logikai muvelet. Ez azt jelenti, hogy egy logikai valtozohoz vagy kifejezeshez tudjuk csatolni, ekkor azt tagadja.  Processing-beli jelolese: `!`.
@@ -84,7 +84,7 @@ boolean akosNyugdijas = akosKora >= nyugdijKorhatar;
 println(akosNyugdijas); // true
 ```
 
-Ertlem szeruen nem csak zart intervallumokra tudunk ellenorizni:
+Ertelemszeruen nem csak zart intervallumokra tudunk ellenorizni:
 
 ```Java
 int tasziloMagassaga = 145; // cm
@@ -144,7 +144,7 @@ void draw() {
 }
 ```
 
-Nem volt tul nehez. Probaljuk meg a szamokat manipulalni! Ha lenyomjuk az egergombot, akkor nojjon a negyzet szelessege!. Kulonben ne tudtenjen semmi.
+Nem volt tul nehez. Probaljuk meg a szamokat manipulalni! Ha lenyomjuk az egergombot, akkor nojjon a negyzet szelessege. Kulonben ne tortenjen semmi.
 
 ```Java
 color hatterSzin = #F7EDCD;
