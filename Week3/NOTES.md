@@ -1,24 +1,24 @@
 # Week 3
 
-## Day 1 - Bool algebra, bevezetes a proceduralis logikaba (milyen tudomanyos)
+## Day 1 - Bool algebra, bevezetés a procedurális logikába (milyen tudományos)
 
-Elozo alkalmakkal tanultuk, hogy hogyan mukodik a hetkoznapok algebraja a processingben:
+Előző alkalmakkal tanultuk, hogy hogyan működik a hétkoznapok algebrája a processingben:
 
 ```Java
 println(1 + 1); // 2
 ```
 
-Annak erdekeben, hogy komplex utasitasokkal tudjuk elarasztani a programjainkat kenytelenek leszunk bevezetni egy uj tipusu valtozot: a **logikai** valtozokat.
+Annak érdekeben, hogy komplex utasytásokkal tudjuk elárasztani a programjainkat kénytelenek leszünk bevezetni egy új típusú változót: a **logikai** változókat.
 
-### A boolean tipus
+### A boolean típus
 
-Elso lepeskent egeszitsuk ki a multheti tablazatunkat egy extra sorral:
+Első lépésként egészítsük ki a múltheti táblázatunkat egy extra sorral:
 
-|Tipus neve|Processing-beli neve|Pelda|
+|Típus neve|Processing-beli neve|Példa|
 |---|---|---|
 |Logikai|boolean|true|
 
-A boolean tipusu valtozoknak erteke lehet `true` vagy `false`. `true` abban az esetben, ha igaz allitast akarunk kifejezni, ellenkezo esetben `false`.
+A boolean típusú változóknak értéke lehet `true` vagy `false`. `true` abban az esetben, ha igaz állítíst akarunk kifejezni, ellenkező esetben `false`.
 
 ```Java
 boolean kekAzEg = true;
@@ -28,13 +28,13 @@ boolean pirosAViz = false; // remeljuk tenyleg
 println(pirosAViz);
 ```
 
-Ez onmagaban nem ad nekunk semmi informaciot. Nezzuk hat milyen muveleteket tudunk rahuzni!
+Ez önmagában nem ad nekünk semmi információt. Nézzük hát milyen műveleteket tudunk ráhúzni!
 
-#### Muveletek booleannal
+#### Műveletek booleannal
 
-3 alapveto muveletunk van amit ebben a kurzusban hasznalni fogunk:
+3 alapvető műveletünk van amit ebben a kurzusban használni fogunk:
 
-- **Es**: ha egy es muveletnek valamelyik oldalan hamis van, akkor az eredmeny is hamis lesz. Processing-beli jelolese: `&&`.
+- **Es**: ha egy es műveletnek valamelyik oldalán hamis van, akkor az eredmény is hamis lesz. Processing-beli jelölése: `&&`.
 
 ```Java
 boolean nemIttamKavet = false;
@@ -44,7 +44,7 @@ boolean faradtVagyokMintAtom = nemIttamKavet && kesonFekudtem;
 println(faradtVagyokMintAtom); // false
 ```
 
-- **Vagy**: ha egy vagy muveletnek valamelyik oldalan van igaz, akkor az eredmeny is igaz les. Processing-beli jelolese: `||`.
+- **Vagy**: ha egy vagy műveletnek valamelyik oldálan van igaz, akkor az eredmény is igaz lesz. Processing-beli jelölése: `||`.
 
 ```Java
 boolean joKedvemVan = true;
@@ -54,7 +54,7 @@ boolean eppenTapsolok = joKedvemVan || joVoltAKoncert;
 println(eppenTapsolok);//true
 ```
 
-- **Nem**: unaris logikai muvelet. Ez azt jelenti, hogy egy logikai valtozohoz vagy kifejezeshez tudjuk csatolni, ekkor azt tagadja.  Processing-beli jelolese: `!`.
+- **Nem**: unáris logikai művelet. Ez azt jelenti, hogy egy logikai változóhoz vagy kifejezéshez tudjuk csatolni, ekkor azt tagadja.  Processing-beli jelölése: `!`.
 
 ```Java
 boolean szeretemAPizzat = false;
@@ -62,9 +62,9 @@ boolean szeretemAPizzat = false;
 println(!szeretemAPizzat);
 ```
 
-Ezek mellett vannak muveleteink amikkel osszehasonlitasokat tudunk vegezni. Ezeknek az eredmenye mindig `boolean`.
+Ezek mellett vannak műveleteink amikkel összehasonlitásokat tudunk végezni. Ezeknek az eredménye mindig `boolean`.
 
-- **Egyenlo**: ket alapelem egyenloseget vizsgalja. Processing-beli jelolese: `==`.
+- **Egyenlő**: két alapelem egyenlősegét vizsgálja. Processing-beli jelölése: `==`.
 
 ```Java
 boolean szeretekTancolni = false;
@@ -74,7 +74,7 @@ boolean tancolok = szeretekTancolni || (ennyiPalinkatIttam == 5);
 println(tancolok); // false :(
 ```
 
-- **Kisebb, nagyobb**: Szerencsere nem csak egyeloseget tudunk vizsgalni.
+- **Kisebb, nagyobb**: Szerencsére nem csak egyemlőséget tudunk vizsgálni.
 
 ```Java
 int akosKora = 67;
@@ -84,7 +84,7 @@ boolean akosNyugdijas = akosKora >= nyugdijKorhatar;
 println(akosNyugdijas); // true
 ```
 
-Ertelemszeruen nem csak zart intervallumokra tudunk ellenorizni:
+Értelemszerűen nem csak zárt intervallumokra tudunk ellenőrizni:
 
 ```Java
 int tasziloMagassaga = 145; // cm
@@ -95,31 +95,31 @@ boolean tasziloBeszallhat = kotelezoMagassag < tasziloMagassaga;
 println(tasziloBeszallhat); // false
 ```
 
-Alapjaban veve a logikai muveletek nem bizonyulnak tul hasznosnak. A szamokat legalabb be tudtuk irni a kedvenc `ellipse` parancsunk parameterei koze, de ezzel meg csak ezt sem tudjuk kezdeni...
+Alapjában véve a logikai műveletek nem bizonyulnak túl hasznosnak. A számokat legalább be tudtuk irni a kedvenc `ellipse` parancsunk paraméterei közé, de ezzel meg csak ezt sem tudjuk kezdeni...
 
-> **Ahogy az okos matekosok csinaljak**: A bool algebra nem egy mai otlet. Eloszor George Bool irta le a tanulmagyait ebben a temakorben valamikor a 19. szazadban. Alapvetoen halmazelmeletrol beszelunk ahol az "es" muvelet a metszetet, a "vagy" muvelet az uniot takarja. A bool algebranak kiemelkedo szerepe van a digitalis elektronikaban.
+> **Ahogy az okos matekosok csinálják**: A bool algebra nem egy mai ötlet. Először George Bool írta le a tanulmányait ebben a témakörben valamikor a 19. században. Alapvetően halmazelméletről beszélünk ahol az "és" művelet a metszetet, a "vagy" művelet az uniót takarja. A bool algebranak kiemelkedő szerepe van a digitális elektronikában.
 
-### Elagazasok, es logikai kontroll a programunkban
+### Elágazások, és logikai kontroll a programunkban
 
-Mindeddig a programjaink esz nelkul vegeztek a feladatokat: Rajzolj ki minden frameben egy kort aminek no a sugara... kovessuk az egeret... mozogjanak a teglalapok... Ezek nem tul erdekes tortenetek. Amikor programot irunk akkor egy dinamikus tortenetet akarunk elmeselni:
+Mindeddig a programjaink ész nélkul végezték a feladatokat: Rajzolj ki minden frameben egy kört aminek nő a sugara... kövessuk az egeret... mozogjanak a téglalapok... Ezek nem túl érdekes történetek. Amikor programot írunk akkor egy dinamikus törtenetet akarunk elmesélni:
 
-> Legyen egy olyan korom ami koveti az egeremet, de legyen az, hogy ha a kepem felso reszeben vagyok, akkor legyen lila, mert azt szeretem. Ha viszont az also reszeben vagyok, akkor legyen sarga, mert azt nem.
+> Legyen egy olyan köröm ami követi az egeremet, de legyen az, hogy ha a képem felső részében vagyok, akkor legyen lila, mert azt szeretem. Ha viszont az alsó részében vagyok, akkor legyen sárga, mert azt nem.
 
-Az okos programozok 1000 eve kitalaltak egy modszert erre, amit elagazasoknak neveznek, az alabbiak az alapveto elemei:
+Az okos programozók 1000 éve kitaláltak egy módszert erre, amit elágazásoknak neveznek, az alábbiak az alapvető elemei:
 
 ```Java
-if(/* logikai feltetel */) {
-    // ha a logikai feltetel igaz, akkor az itteni kodsor lefut
-} else if(/* logikai feltetel, amit akkor nezunk meg ha az elozo(k) nem jottek be */) {
-    // ha az elso if nem jott be, de az e folotti logikai feltetel igaz, akkor ez fut le
+if(/* logikai feltétel */) {
+    // ha a logikai feltétel igaz, akkor az itteni kódsor lefut
+} else if(/* logikai feltétel, amit akkor nézunk meg ha az előző(k) nem jöttek be */) {
+    // ha az első if nem jött be, de az e fölötti logikai feltétel igaz, akkor ez fut le
 } else {
-    // ha semmi nem jott volna ossze a fentiek kozul
+    // ha semmi nem jött volna össze a fentiek közül
 }
 ```
 
-Nem kell feltetlen minden elemnek szerepelnie a fent felsoroltak kozul. Azert az if az kell
+Nem kell feltétlen minden elemnek szerepelnie a fent felsoroltak közüé. Azert az if az kell.
 
-Ezek alapjan nem olyan nezez megcsinalni a fenti feladatot.
+Ezek alapján nem olyan nehéz megcsinálni a fenti feladatot.
 
 ```Java
 color hatterSzin = #F7EDCD;
@@ -144,7 +144,7 @@ void draw() {
 }
 ```
 
-Nem volt tul nehez. Probaljuk meg a szamokat manipulalni! Ha lenyomjuk az egergombot, akkor nojjon a negyzet szelessege. Kulonben ne tortenjen semmi.
+Nem volt tul nehéz. Probáljuk meg a számokat manipulálni! Ha lenyomjuk az egérgombot, akkor nőjjön a négyzet szélessége. Különben ne történjen semmi.
 
 ```Java
 color hatterSzin = #F7EDCD;
@@ -172,9 +172,9 @@ void draw() {
 }
 ```
 
-> A `mousePressed` esemeny visszaad egy igazat vagy egy hamisat attol fuggoen, hogy le van e nyomva valamilyen gomb az egeren, vagy nincs. Vannak hasonlok a billentyuzetekre is, ezekkel kesobbi alkalmakkor fogunk megismerkedni.
+> A `mousePressed` esemény visszaad egy igazat vagy egy hamisat attol függően, hogy le van-e nyomva valamilyen gomb az egéren, vagy nincs. Vannak hasonlók a billentyűzetekre is, ezekkel kesőbbi alkalmakkor fogunk megismerkedni.
 
-Egeszitsuk ki a programot azzal, hogy ha a negyzetunk oldala eleri a kep szelesseget, akkor befele haladjon lenyomaskor.
+Egészítsük ki a programot azzal, hogy ha a négyzetünk oldala eléri a kép szélességét, akkor befele haladjon lenyomáskor.
 
 ```Java
 color hatterSzin = #F7EDCD;
@@ -211,11 +211,11 @@ void draw() {
 }
 ```
 
-Ekkor megjelennek a programunkban az allapotok. Ez egy eleg egyszeru program, ket allapottal rendelkezik. Egyszer novekedunk, egyzer meg csokkenunk. A csokkenes es novekedes allapotat az hatarozza meg, hogy milyen szeles a negyzetunk oldala.
+Ekkor megjelennek a programunkban az állapotok. Ez egy elég egyszerű program, két állapottal rendelkezik. Egyszer növekedünk, egyszer meg csökkenünk. A csökkenés és növekedés állapotát az határozza meg, hogy milyen széles a négyzetünk oldala.
 
-Keszitsunk egy labdat ami visszapattan a falrol:
+Készitsünk egy labdát ami visszapattan a falról:
 
-1. Induljon el egy labda valamilyen iranyba veletlen helyrol veletlen sebsseggel.
+1. Induljon el egy labda valamilyen irányba véletlen helyről véletlen sebsséggel.
 
 ```Java
 float korX;
@@ -248,13 +248,13 @@ void draw() {
 }
 ```
 
-2. Talaljuk ki, hogy mit jelent az hogy visszapattan a falrol.
+2. Találjuk ki, hogy mit jelent az hogy visszapattan a falról.
 
-Koppanunk a falon = elerjuk a szelet a kepnek!
+Koppanunk a falon = elérjuk a szélét a képnek!
 
-Visszapattanunk = -1-el megszorozzuk a megfelelo iranyt. Ha vizszintes az utkozes akkor az x sebesseget, ha fuggoleges akkor az y-t. Feltetelezzuk, hogy tokeletesen rugalmas az univerzum.
+Visszapattanunk = -1-el megszorozzuk a megfelelő irányt. Ha vízszintes az ütkozés akkor az x sebességet, ha függőleges akkor az y-t. Feltételezzük, hogy tökeletesen rugalmas az univerzum.
 
-3. Fejlesszuk le a visszapattanast.
+3. Fejlesszuk le a visszapattanást.
 
 ```Java
 float korX;
@@ -301,6 +301,6 @@ void draw() {
 
 ## HF:
 
-1. Valositsunk eg egy ejjel-nappal ciklust a mi kis hazikos hazinkban.
+1. Valósitsunk meg egy éjjel-nappal ciklust a mi kis házikós házinkban.
 
-Szorgi:A gravitacios peldaban gondoljuk at hogy a visszapattanas az mit jel
+Szorgi:A gravitációs példában gondoljuk át hogy a visszapattanás az mit jelent.
