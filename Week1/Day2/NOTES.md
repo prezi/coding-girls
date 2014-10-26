@@ -34,27 +34,27 @@ Processing mint eszköz
 
 ### MyFirstEllipse.pde
 
-Cél: Ellipszis rajzolása a felületre
+Cél: Ellipszis rajzolása a felületre.
 
-függvények: ellipse, fill, noFill, stroke, noStroke
+Függvények: ellipse, fill, noFill, stroke, noStroke
 
 Referencia használata: háromszög
 
-Extra: jatszadozzanak a szamokkal. A mentorok segithetnek nekik a kreativkoasban. Mer valaki 2 kort rajzolni?
+Extra: Játszadozzanak a számokkal. A mentorok segithetnek nekik a kreatívkodásban. Mer valaki 2 kört rajzolni?
 
 ### void setup()
 
-setup függvény bevezetése
+A setup függvény bevezetése.
 
-függvények: background, size
+Függvények: background, size
 
 ### MyFirstTriangle.pde
 
-Cél: Referencia használatával háromszög rajzolása
+Cél: Referencia használatával háromszög rajzolása.
 
 ### MyFirstSquare.pde
 
-Cél: keressék ki a lányok a manualból, hogy hogy lehet négyzetet rajzolni
+Cél: Keressék ki a lányok a manualból, hogy hogy lehet négyzetet rajzolni.
 
 ### MultipleObjects.pde
 
@@ -62,27 +62,27 @@ Cél: Alakzatok egymáshoz viszonyulása.
 
 Mi van akkor ha nem kapcsoljuk ki a fillt?
 
-És ha nem kapcsoljuk ki a strokeot?
+És ha nem kapcsoljuk ki a stroke-ot?
 
 ### SoWhereAreTheWindows.pde
 
-Cél: Házikó rajzolása
-Extra: rajzoljunk ablakokat ajtót, több házat, napot, minden retket.
+Cél: Házikó rajzolása.
+Extra: Rajzoljunk ablakokat ajtót, több házat, napot, minden retket.
 
-### Ha marad ido
+### Ha marad idő
 
-Bedobni a draw fuggvenyt
+Bedobni a draw függvényt.
 
-#### Kor kozepe az egeren
+#### Kör közepe az egéren
 
-Kor kozepe legyen az eger kozeppontjan
+Kör közepe legyen az egér középpontján.
 
-Kerdes: hogy lehetne, hogy ne rajzoljon a program egymasra koroket?
+Kérdés: Hogy lehetne, hogy ne rajzoljon a program egymásra köröket?
 
-#### Kor merete valtozzon az eger helyzete szerint
+#### Kör mérete változzon az egér helyzete szerint
 
-### Hazi feladatok
+### Házi feladatok
 
-Rajzoltunk hazikot. Ha valaki nem egeszitette volna ki frankora, akkor tegye meg. Rajzoljon mindenki valami emberszerut. Legyen test, fej, vegtagok.
+Rajzoltunk házikót. Ha valaki nem egészitette volna ki frankóra, akkor tegye meg. Rajzoljon mindenki valami emberszerűt. Legyen test, fej, végtagok.
 
-Szorgalmi: Tanulmanyozza [ezt](http://processing.org/examples/shapeprimitives.html) az oldalt. Hasznalja fel ezeket az alakzatokat az ember lerajzolasara. Ha van kedve lehet kubista.
+Szorgalmi: Tanulmányozza [ezt](http://processing.org/examples/shapeprimitives.html) az oldalt. Használja fel ezeket az alakzatokat az ember lerajzolására. Ha van kedve lehet kubista.
