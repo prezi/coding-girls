@@ -64,7 +64,7 @@ void setup() {
 
 Ez mind szép és jó, de min javítottuk a kódon? Ezzel a szemlélettel láthatjuk hogy valamilyen ciklusos módszerrel tudhatunk könnyíteni a kódon. Azonban a gondunk még mindig fennáll: nem tudjuk kompaktan tárolni az adatokat.
 
-Ennek a problémának a feloldására találták ki a programozók a tömböket. A töbök feladata, hogy a memóriában ugyanolyan típusú objektumokat közel tároljon egymáshoz. Ezzel az objektumok elérése gyors lesz, és a programozónak nem kell külön neveket adni mindegyiknek.
+Ennek a problémának a feloldására találták ki a programozók a tömböket. A tömbök feladata, hogy a memóriában ugyanolyan típusú objektumokat közel tároljanak egymáshoz. Ezzel az objektumok elérése gyors lesz, és a programozónak nem kell külön neveket adni mindegyiknek.
 
 Amikor létrehozunk egy tömböt, meg kell adnunk, hogy milyen típusú adatokat fogunk benne tárolni, hogy mi a tömbnek a neve, illetve, hogy hány elemet szándékozunk majd beletenni:
 
@@ -83,7 +83,7 @@ kiralySzamok[1] = 42;
 println(kiralySzamok[0]);
 println(kiralySzamok[1]);
 
-println(kiralySzamok.length)
+println(kiralySzamok.length);
 ```
 
 A tömb elemekre érdemes lehet egyéni változókként gondolni.
