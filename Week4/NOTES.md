@@ -3,7 +3,7 @@
 
 ## Függvények, szubrutinok
 
-Nem zavart eddig senkit sem, hogy minden egyes alkalommal amikor egy kort akartunk kirajzolni, akkor ezt kellett beírnunk:
+Nem zavart eddig senkit sem, hogy minden egyes alkalommal amikor egy kört akartunk kirajzolni, akkor ezt kellett beírnunk:
 
 ```Java
 float sugar = 60;
@@ -14,9 +14,9 @@ Kérdés: Nincsen a Processingben valami egyszerű  `kor` vagy esetleg `circle` 
 
 A válasz az, hogy nincsen, de szerencsére tudunk csinálni!
 
-Függvényeket nem nehéz készíteni. Először is ki kell találnunk mit szeretne csinálni a függvényünk. Eztán meghatározzu, hogy milyen adatokra lesz szüksége, hogy az adott műveleteket elvégezze. Hasonlóan a matematikában tanult függvényekhez, a Processingben is tudunk kimeneteket adni.
+Függvényeket nem nehéz készíteni. Először is ki kell találnunk mit szeretne csinálni a függvényünk. Ezután meghatározzuk, hogy milyen adatokra lesz szüksége, hogy az adott műveleteket elvégezze. Hasonlóan a matematikában tanult függvényekhez, a Processingben is tudunk kimeneteket adni.
 
-A függvényeket csak a létrehozásuk után tudjuk használni. Itt egz egyerű példa arra, hogy hogyan lehet egy számtani és egy mértani közepet meghatározni Processingben:
+A függvényeket csak a létrehozásuk után tudjuk használni. Itt egy egyszerű példa arra, hogy hogyan lehet egy számtani és egy mértani közepet meghatározni Processingben:
 
 ```Java
 void setup() {
@@ -33,11 +33,11 @@ float mertaniKozep(float a, float b) {
 }
 ```
 
-Ha jól megnézzük a kódot, láthatjuk, hogy nem 2, de 3 függvénzdefiníció van a programunkban. A setup-ot nem kell meghívnunk, nem kell használnunk a kódban, hogy érvénybe lépjen, a Processing ezt elintézi nekünk. Ezek alapján a Processingben egy függvény definiálásának a szignatúrája így néz ki:
+Ha jól megnézzük a kódot, láthatjuk, hogy nem 2, de 3 függvénydefiníció van a programunkban. A setup-ot nem kell meghívnunk, nem kell használnunk a kódban, hogy érvénybe lépjen. A Processing ezt elintézi nekünk. Ezek alapján a Processingben egy függvény definiálásának a szignatúrája így néz ki:
 
 `<visszatérési típus> <függvény neve>(bemeneti változók) {...}`
 
-Az eddig tanultak alapján tudjatjuk, hogy a változókat amiket létrehozunk bemenetként csak a függvénydefinícióban használhatjuk.
+Az eddig tanultak alapján tudhatjuk, hogy a változókat amiket létrehozunk bemenetként csak a függvénydefinícióban használhatjuk.
 
 A void függvények olyan függvények, amiknek nincsen visszatérési értékük.
 
@@ -56,7 +56,7 @@ void kor(float kozepX, float kozepY, float sugar) {
 }
 ```
 
-Beepitett fuggveny feluldefinialasa:
+Beépitett függveny felüldefiniálása:
 
 ```Java
 boolean paused = false;
@@ -78,7 +78,7 @@ void keyPressed() {
 }
 ```
 
-## Cikusok
+## Ciklusok
 
 Kellemetlen órai idézet is lehet:
 
@@ -149,7 +149,7 @@ void draw() {
 }
 ```
 
-Tul sok a zarojel! Olvashatatlan! Ki irta ezt? Emeljuk ki fuggvenybe!
+Túl sok a zárójel! Olvashatatlan! Ki írta ezt? Emeljük ki függvénybe!
 
 ```Java
 float negyzetOldal;
