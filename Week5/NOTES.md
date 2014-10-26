@@ -103,6 +103,8 @@ for(int i = 0; i < kedvencKajaim.length; ++i) {
 
 Oldjuk hát meg az eredeti feladatot!
 
+Első körben eszkábáljunk egy olyan szoftvert, ami egy sorba rajzol ki nekünk elemeket. Ismerkedjünk meg azzal, hogy hogyan is működnek a tömbök.
+
 ```Java
 float korokX[] = new float[30];
 
@@ -124,6 +126,8 @@ void rajzoljKoroket() {
   }
 }
 ```
+
+Remek! Felvehetjük a második koordinátát is, ezzel új dimenziót adva a köreinknek:
 
 ```Java
 float korokX[] = new float[30];
@@ -148,6 +152,8 @@ void rajzoljKoroket() {
   }
 }
 ```
+
+Adjunk hát nekik valamicske sebességet is.
 
 ```Java
 float korokX[] = new float[30];
@@ -189,6 +195,17 @@ void frissitsdAKoroket() {
   }
 }
 ```
+
+Eyyel meg is volnánk. Figzeljük meg a kód tagoltságát. Az olvashatóság érdekében a kódomat függvényekre bontottam. A `draw`-ban így könnyedén meg tudom mondani, hogz mi történik, anélkül, hogy belelátnék az egyes elemekbe. Azokba csak akkor nézek bele, ha sejtem, hogy hibásak, vagy a főnököm azt mondja, hogy bele kell néznem. 
+
+Ha azt akarnám, hogy csak minden második kör mozogjon, akkor ezt könnyen megtudom oldani a moduló operátorral. A moduló operátor megmondja, hogy az első számot osztva a mádosikkal mennyi lesz a maradék. Például:
+
+```Java
+println(2 % 2 == 0); // true
+println(13 % 12 == 1); // true
+```
+
+Ezzel könnyen meg tudjuk mondani a paritását egy számnak, csak meg kell néznük, hogy a kettővel vett modulusa az 1-et ad-e. Alkalmazzuk ezt a tudást:
 
 ```Java
 void frissitsdAKoroket() {
