@@ -3,130 +3,130 @@
 
 ## Day 1
 
-### Valtozok
+### Változók
 
-Mi az a valtozo?
+Mi az a változó?
 
-Kepzeljunk el ket ketrecet. Az egyikbe csak egy macska, a masikba csak egy kutya fer bele. Ezekbol a ketrecekbol lehet tobb darab is, egy allatmenhelyen peldaul a sorszammal hatarozzak meg. Kutya-1 a kutyaketrec 0001-ben van, kutya-2 a kutyaketrec 0002-ben, macska-1 a macskaketrec 0001-ben.  Ugyanigy megy ez a programozasban is, csak különleges szavakkal: a kutya vagy a macska a _tipus_ és a ketrec a _változó_.
+Képzeljünk el két ketrecet. Az egyikbe csak egy macska, a másikba csak egy kutya fér bele. Ezekből a ketrecekből lehet több darab is, egy állatmenhelyen például a sorszámmal határozzák meg. Kutya-1 a kutyaketrec 0001-ben van, kutya-2 a kutyaketrec 0002-ben, macska-1 a macskaketrec 0001-ben.  Ugyanígy megy ez a programozásban is, csak különleges szavakkal: a kutya vagy a macska a _típus_ és a ketrec a _változó_.
 
-#### Milyen beepitett tipusok vannak?
+#### Milyen beépitett típusok vannak?
 
-|Tipus neve|Processing-beli neve|Pelda|
+|Típus neve|Processing-beli neve|Példa|
 |---|---|---|
-|Egesz szam|int|42|
-|Lebegopontos szam|float|3.14|
+|Egész szám|int|42|
+|Lebegőpontos szám|float|3.14|
 |Karakter|char|'a'|
-|Szoveg|String|"Coding Girls"|
+|Szöveg|String|"Coding Girls"|
 
-#### Hogyan csinalunk valtozokat?
+#### Hogyan csinálunk változókat?
 
-A formula egyszeru, de nagyszeru:
+A formula egyszerű, de nagyszerű:
 
-    - Megmondjuk mi a tipusunk
-    - Adunk egy nevet a tarolonak
+    - Megmondjuk mi a típusunk
+    - Adunk egy nevet a tárolónak
 
-A nevet erdemes sokatmondonak valasztani. Nem baj ha tul hosszu, a cel, hogy aki olvassa a kodot az tudja, hogy mirol van szo!
+A nevet érdemes sokatmondónak választani. Nem baj ha túl hosszú, a cél, hogy aki olvassa a kódot az tudja, hogy miről van szó!
 
-    - Tegyunk egy egyenloseg jelet (=). Ezzel jeloljuk, hogy ebbe a valtozoba erteket szeretnenk rakni
-    - Adjuk meg az erteket amit be akarunk tolteni.
-    - Ez egy utasitas, nem felejtjuk le a pontosvesszot!
+    - Tegyünk egy egyenlőseg jelet (=). Ezzel jelöljuk, hogy ebbe a változóba értéket szeretnénk rakni
+    - Adjuk meg az érteket amit be akarunk tölteni.
+    - Ez egy utasítás, nem felejtjük le a pontosvesszőt!
 
-Pelda:
+Példa:
 ```Java
 
-// Rogton adok egy erteket a kedvenc szamomnak, mivel nagyon szeretem.
-// Figyeljunk a sokatmondo vatozonevekre!
+// Rögtön adok egy érteket a kedvenc számomnak, mivel nagyon szeretem.
+// Figyeljünk a sokatmondó vátozónevekre!
 int kedvencSzamom = 7;
 
-// Nem feltetlen kell azonnal erteket adnunk egy valtozonak. Igy csak jelezzuk a Processingnek, hogy majd szuksegunk lesz ra.
+// Nem feltétlen kell azonnal értéket adnunk egy változónak. Így csak jelezzük a Processingnek, hogy majd szükségünk lesz rá.
 float ennekNemAdokAzonnalErteket;
 
 String kedvencKajam = "Pizza";
 
-// Itt nem adtam neki tipust, mivel mar letrehoztam korabban ezt a valtozot. Tobbszor nem kell.
+// Itt nem adtam neki típust, mivel már létrehoztam korábban ezt a változót. Többször nem kell.
 ennekNemAdokAzonnalErteket = 3.1415972;
 ```
 
 ### println
 
-Programozok fontos eszkoze. Sokszor nem tudjuk, hogy szamilag mi is tortenik a hatterben. Foleg ha tobb szaz valtozom van.
+Programozók fontos eszköze. Sokszor nem tudjuk, hogy számilag mi is történik a háttérben. Főleg ha több száz változóm van.
 
-Cel: a programban levo esemenyek kovetese szemmel.
+Cél: a programban lévő események követése szemmel.
 
 ```Java
 void setup() {
   
-  // Szam
+  // Szám
   println(1337);
   
-  // Lebegopontos (tizedesjegyes) szam
+  // Lebegőpontos (tizedesjegyes) szám
   println(3.14);
   
-  // Szoveg
+  // Szöveg
   println("Hello-Bello");
   
-  // Egy betu
+  // Egy betű
   println('c');
 
-  // Egy valtozo
+  // Egy változó
   int nagyonNagySzam = 102;
   println(nagyonNagySzam);
    
 }
 ```
 
-### Muveletek szamokkal
+### Műveletek számokkal
 
-(Majdnem)minden jatszik amit csak el tudtok kepzelni matekorarol. Nezzuk az `int`-eket:
+(Majdnem)minden játszik amit csak el tudtok képzelni matekórarol. Nezzuk az `int`-eket:
 
 ```Java
-// Altalanos -1.: osszeadas
+// Általános -1.: összeadás
 int egyJopofaSzam = 6;
 int ketJopofaSzamOsszege = egyJopofaSzam + 28;
 println(ketJopofaSzamOsszege); // nagyon remeljuk, hogy 34. ami nem annyira jopofa
 
-// Altalanos 0.: kivonas
+// Általános 0.: kivonás
 int vanEnnyiAlmam = 12;
 int megettemBeloleEnnyit = 36;
 int ennyiAlmamMaradt = vanEnnyiAlmam - megettemBeloleEnnyit; // megjegyzes: dinnyevel is mukodik
 println(ennyiAlmamMaradt);
 
-// Lehet ezt rovidebben is, ha azt akarom, hogy az eredeti valtozom erteke valtozzon. Nagyon magyar.
+// Lehet ezt rövidebben is, ha azt akarom, hogy az eredeti valtozóm értéke változzon. Nagyon magyar.
 vanEnnyiAlmam -= megettemBeloleEnnyit; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam - megettemBeloleEnnyit
 vanEnnyiAlmam += megettemBeloleEnnyit; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam + megettemBeloleEnnyit
 
-// Az 1-el valo novelesre es csokkentesre is van gyorsgomb!
+// Az 1-el való növelésre es csökkentésre is van gyorsgomb!
 --vanEnnyiAlmam; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam - 1
 ++vanEnnyiAlmam; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam + 1
 ```
 
-Itt érdemes megállni egy kicsit és megbeszélni, hogy ennek miért van értelme? Mert matekórán ugye azt tanítják, hogyha x = x - 1, abból következik, hogy 0 = -1. Tehát fontos emlékezni, hogy ami a jobb oldalon van írva, az történik először, és az egyenlőség jele valójában nem egyenlőseget jelent, hanem értékadás.
+Itt érdemes megállni egy kicsit és megbeszélni, hogy ennek miért van értelme? Mert matekórán ugye azt tanítják, hogy ha x = x - 1, abból következik, hogy 0 = -1. Tehát fontos emlékezni, hogy ami a jobb oldalon van írva, az történik először, és az egyenlőség jele valójában nem egyenlőseget jelent, hanem értékadás.
 
 ```Java
 
-// Meg mindig altalanos 0.: szorzas.
+// Még mindig általános 0.: szorzás.
 int elegKisFaktorialis = 1 * 2 * 3 * 4 * 5 * 6;
 
-// Altalanos 0.5.: osztas
+// Általános 0.5.: osztás
 int legkisebbPrimszam = 16 / 8;
 
-// Azert nem olyan trivialis: egeszt egesszel osztva egeszet kapunk!
+// Azért nem olyan triviális: egészt egésszel osztva egészet kapunk!
 println(9 / 2);
 ```
 
-A kulonbseg `int` es `float` kozott istenigazan csak az osztasban van muveletek szempontjabol:
+A különbség `int` és `float` között istenigazán csak az osztásban van műveletek szempontjából:
 
 ```Java
-// Szerencsere itt nem egeszet fogunk visszakapni
+// Szerencsére itt nem egészet fogunk visszakapni
 float ketSzuperSzamHanyadosa = 3.141592 / 2.718781; // pi / e
 println(ketSzuperSzamHanyadosa);
 ```
 
-### Automatikusan mozgo alakzatok
+### Automatikusan mozgó alakzatok
 
-Vegre vege az elmeletnek! Johet a mokazas!
+Végre vége az elméletnek! Jöhet a mokázás!
 
-Mire is jo nekunk a valtozo? A valtozokat felhasznalhatjuk peldaul egy kornek a parameterekent:
+Mire is jó nekünk a változó? A változókat felhasználhatjuk például egy körnek a paramétereként:
 
 ```Java
 void setup() {
@@ -139,11 +139,11 @@ void setup() {
 }
 ```
 
-Miert is jo ez? Ugye tanultuk, hogy a `draw` fuggveny folytonfolyvast meghivodik egymas utan. Egy ilyen meghivast **frame**-nek nevezunk az informatikaban. Emelle a kifejezes melle parosul a **frame rate**, ami azt takarja, hogy masodpercenkent hanyszor frissul a kepernyo, a mi esetunkben pedig azt jelenti, hogy hanyszor hivodik meg a `draw()` masodpercenkent.
+Miért is jó ez? Ugye tanultuk, hogy a `draw` függvény folytonfolyvást meghívódik egymás után. Egy ilyen meghívást **frame**-nek nevezünk az informatikában. Emellé a kifejezés mellé párosul a **frame rate**, ami azt takarja, hogy másodpercenként hányszor frissül a képernyő, a mi esetünkben pedig azt jelenti, hogy hányszor hívódik meg a `draw()` másodpercenként.
 
-> Emlekeztek ra, amikor Stephen Jackson Hobbitjat megneztetek a mozikban? Valoszinuleg fajt a fejetek utana, mivel radikalisan **48**-as frame rattel jatszottak le a filmet a megszokott 24-25 helyett.
+> Emlékeztek rá, amikor Stephen Jackson Hobbitját megnéztétek a mozikban? Valószínüleg fájt a fejetek utána, mivel radikálisan **48**-as frame rate-tel játszottak le a filmet a megszokott 24-25 helyett.
 
-Elkalandoztam. Szoval ez azert jo nekunk, mert ha a `draw()`-ban vegzunk valtoztatasokat egy valtozon, akkor az mindig eletbe fog lepni! Nezzunk egy egyszeru peldat:
+Elkalandoztam. Szóval ez azért jó nekünk, mert ha a `draw()`-ban végzünk változtatásokat egy változón, akkor az mindig életbe fog lépni! Nézzünk egy egyszerű példát:
 
 ```Java
 int korAtmeroje = 0;
@@ -160,9 +160,9 @@ void draw() {
 }
 ```
 
-> Nem, nem csaltam. Miutan beallitottuk a `size()` fuggvennyel a vaszon meretet, a `width` es `height` valtozok automatikusan beallitodnak es tudjuk oket hasznalni barhol a kodban.
+> Nem, nem csaltam. Miután beállítottuk a `size()` függvénnyel a vászon méretet, a `width` es `height` változók automatikusan beállítódnak és tudjuk őket használni bárhol a kódban.
 
-Hasonloan itt egy masik pelda:
+Hasonlóan itt egy másik példa:
 
 ```Java
 int ellipszisAtmerojeX = 0;
@@ -179,14 +179,14 @@ void draw() {
     ++ellipszisAtmerojeX;
     --ellipszisAtmerojeY;
 
-    // mekkora az ellipszis terulete?
+    // mekkora az ellipszis területe?
     println(PI * ellipszisAtmerojeX / 2 * ellipszisAtmerojeY / 2);
 }
 ```
 
-### A veletlenseg szepsegei
+### A véletlenség szépségei
 
-A Processing alkalmas arra, hogy veletlenszeru szamokat adjon vissza nekunk egy `random` nevezetu metodus segitsegevel. Egeszen jopofa dolgokat lehet vele csinalni:
+A Processing alkalmas arra, hogy véletlenszerű számokat adjon vissza nekünk egy `random` nevezetű metódus segítségével. Egészen jópofa dolgokat lehet vele csinálni:
 
 ```Java
 int negyzetCsucsaX;
@@ -204,21 +204,21 @@ void draw() {
     background(#FFFFFF);
     rect(negyzetCsucsaX, negyzetCsucsaY, 50, 50);
     
-    // random(10) visszaad egy szamot 0 es 9 kozott
+    // random(10) visszaad egy számot 0 es 9 közözt
     negyzetCsucsaX += random(10) - 5;
     negyzetCsucsaY += random(10) - 5;
 }
 ```
 
-> Ahogy a muveszek csinaljak: A `random` egy eleg nyers funkcio. Altalaban gyakorlatban a `noise` fuggvenyt hasznaljak. Mi nem fogjuk, de akit erdekel utanajarhat!
+> Ahogy a műveszek csinálják: A `random` egy elég nyers funkció. Általában gyakorlatban a `noise` függvényt használjak. Mi nem fogjuk, de akit érdekel utánajárhat!
 
-### A color es image tipus
+### A color es image típus
 
-Van meg ket fontos tipus amit sokat fogunk hasznalni. Az egyik a `PImage`, ami kepek tarolasara alkalmas. A masik a `Color`, ami pedig szinekere.
+Van meg két fontos típus amit sokat fogunk használni. Az egyik a `PImage`, ami képek tárolasára alkalmas. A másik a `Color`, ami pedig színekere.
 
 #### PImage
 
-Kepeket letolthetjuk az internetrol. Ekkor a Processing minden futtatas elejen letolni a kepet a memoriaba.
+Képeket letölthetjuk az internetről. Ekkor a Processing minden futtatás eléjen letölti a képet a memóriába.
 
 ```Java
 PImage viccesMacskasKep;
@@ -230,9 +230,9 @@ void setup() {
 }
 ```
 
-> Legyunk okosak! `draw`-ba ne tegyunk kepletoltest, mert nem olcso dolog letolteni egy kepet minden frameben!
+> Legyünk okosak! `draw`-ba ne tegyünk képletöltest, mert nem olcsó dolog letölteni egy képet minden frameben!
 
-Kepeket betolthetunk a fajlrendzerbol is. Ekkor letre kell hoznunk egy `data` konyvtarat a pde file mellett, es oda kell helyezni a filet.
+Képeket betölthetünk a fájlrendszerből is. Ekkor létre kell hoznunk egy `data` könyvtárat a pde file mellett, es oda kell helyezni a filet.
 
 ```Java
 PImage viccesKutyasKep;
@@ -246,7 +246,7 @@ void setup() {
 
 #### color
 
-Color valtozoba tudjuk menteni a szineinket.
+Color változóba tudjuk menteni a színeinket.
 
 ```Java
 color azEgSzine = #82A1DB;
@@ -255,11 +255,11 @@ void setup() {
 }
 ```
 
-### Egerkoveto
+### Egérkövető
 
-Feladat: csinaljunk egy olyan programot, ahol egy kep (vagy alakzat, pl. kor) orommel koveti a kurzorunkat. Ez alapjaban veve nem lenne nehez, igy a celunk az lesz, hogy "smooth" legyen a kovetes.
+Feladat: csináljunk egy olyan programot, ahol egy kép (vagy alakzat, pl. kör) örömmel követi a kurzorunkat. Ez alapjában véve nem lenne nehéz, így a célunk az lesz, hogy "smooth" legyen a követés.
 
-Rendicsek. Legyunk okos programozok, es probaljuk meg lepesrol lepesre megoldani a problemat. Kezdjuk mondjuk azzal amit elvarunk vegeredmenykent: legyen a kor kozeppontja az eger pozicioja.
+Rendicsek. Legyünk okos programozók, és probáljuk meg lépésről lépésre megoldani a problémát. Kezdjük mondjuk azzal amit elvárunk végeredményként: legyen a kör középpontja az egér pozíciója.
 ```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
@@ -276,7 +276,7 @@ void draw() {
 }
 ```
 
-Ez nem volt tul izzaszto. Mivel a kor kozeppontja valtoni fog majd az idovel, ezert lehet erdemes lenne kiemelni egy valtozoba.
+Ez nem volt túl izzasztó. Mivel a kör középpontja változni fog majd az idővel, ezért lehet érdemes lenne kiemelni egy változóba.
 ```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
@@ -297,7 +297,7 @@ void draw() {
 }
 ```
 
-Szuper, mostmar elkezhetunk vele szamolgatni. Mit is akarunk majd? Hogy a kor kozepe valahogy valtozzon az eger poziciojahoz kepest.
+Szuper, mostmár elkezdhetunk vele számolgatni. Mit is akarunk majd? Hogy a kör közepe valahogy változzon az egér pozíciójához képest.
 ```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
@@ -321,7 +321,7 @@ void draw() {
 }
 ```
 
-Mit is csinaltunk? A kor kozepe mindig novekedni fog az eger kozeppontja es a kor kozepenek a kulonbsegevel. Ha a kulonbseg 0, akkor a ketto pont ugyanazon a ponton van. Ez minden 2. frameben igaz is lesz, ha atgondoljuk egy picit. Igy gyakorlatilag van egy olyan programunk, ahol a kor kozeppontja szinte rogton odaugrik az egerre. Lassitsuk hat le!
+Mit is csináltunk? A kör közepe mindig növekedni fog az egér középpontja es a kör közepének a különbségével. Ha a különbség 0, akkor a kettő pont ugyanazon a ponton van. Ez minden 2. frameben igaz is lesz, ha átgondoljuk egy picit. Így gyakorlatilag van egy olyan programunk, ahol a kör középpontja szinte rögtön odaugrik az egérre. Lassitsuk hát le!
 ```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
@@ -347,15 +347,15 @@ void draw() {
 }
 ```
 
-A kovetesi hanyados fogja meghatarozni, hogy mennyire kovetjuk gyorsan az egeret. Matek.
+A követési hányados fogja meghatározni, hogy mennyire követjük gyorsan az egeret. Matek.
 
 
-### Hazi feladat
+### Házi feladat
 
-1. Fejlesszuk tovabb a korabbi hazinkat! Mozogjon a nap automatikusan. Nem kell meg azzal foglalkozni, hogy eltunik a kepernyorol. **BONUS**: Mozogjanak a felhok is automatikusan. 
-2. Szeretjuk a veletlen szamokat. Fejlesszunk egy olyan programot ami jol demonstralja, hogy milyen veletlenseggel mozognak az alakzatok! Legyen tobb mozgo elemunk. **BONUS**: gondolkozzunk el rajta, hogy hogy lehetne a vasznon jelolni a mozgast.
+1. Fejlesszük tovább a korábbi házinkat! Mozogjon a nap automatikusan. Nem kell meg azzal foglalkozni, hogy eltűnik a képernyőről. **BONUS**: Mozogjanak a felhők is automatikusan. 
+2. Szeretjük a véletlen számokat. Fejlesszünk egy olyan programot ami jol demonstrálja, hogy milyen véletlenséggel mozognak az alakzatok! Legyen több mozgó elemünk. **BONUS**: gondolkozzunk el rajta, hogy hogy lehetne a vásznon jelólni a mozgást.
 
 Szorgalmi: 
 
-1. Lehetne valahogy gravitaciot szimulalni az eddig tanultakkal?
-2. Nezzetek meg a `noise` fuggvenyt es probaljatok meg felhasznalni valamilyen mozgasnal. Tipp: akkor lesz harmonikus, ha valamilyen korabbi valtozot hasznaltok fel parameterkent.
+1. Lehetne valahogy gravitációt szimulálni az eddig tanultakkal?
+2. Nézzétek meg a `noise` függvényt es próbaljátok meg felhasználni valamilyen mozgásnal. Tipp: akkor lesz harmonikus, ha valamilyen korábbi változot használtok fel paraméterként.
