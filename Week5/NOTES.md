@@ -17,10 +17,10 @@ void setup() {
     ...
     float korX29 = random(width);
 
-    float korY0 = random(width);
-    float korY1 = random(width);
+    float korY0 = random(height);
+    float korY1 = random(height);
     ...
-    float korY29 = random(width);
+    float korY29 = random(height);
 }
 ```
 
@@ -196,9 +196,9 @@ void frissitsdAKoroket() {
 }
 ```
 
-Eyyel meg is volnánk. Figzeljük meg a kód tagoltságát. Az olvashatóság érdekében a kódomat függvényekre bontottam. A `draw`-ban így könnyedén meg tudom mondani, hogz mi történik, anélkül, hogy belelátnék az egyes elemekbe. Azokba csak akkor nézek bele, ha sejtem, hogy hibásak, vagy a főnököm azt mondja, hogy bele kell néznem. 
+Ezzel meg is volnánk. Figyeljük meg a kód tagoltságát. Az olvashatóság érdekében a kódomat függvényekre bontottam. A `draw`-ban így könnyedén meg tudom mondani, hogy mi történik, anélkül, hogy belelátnék az egyes elemekbe. Azokba csak akkor nézek bele, ha sejtem, hogy hibásak, vagy a főnököm azt mondja, hogy bele kell néznem. 
 
-Ha azt akarnám, hogy csak minden második kör mozogjon, akkor ezt könnyen megtudom oldani a moduló operátorral. A moduló operátor megmondja, hogy az első számot osztva a mádosikkal mennyi lesz a maradék. Például:
+Ha azt akarnám, hogy csak minden második kör mozogjon, akkor ezt könnyen megtudom oldani a moduló operátorral. A moduló operátor megmondja, hogy az első számot osztva a másodikkal mennyi lesz a maradék. Például:
 
 ```Java
 println(2 % 2 == 0); // true
