@@ -218,7 +218,12 @@ void frissitsdAKoroket() {
 }
 ```
 
-Órai feladatok: 
+### Órai feladatok: 
 
  - Oldjuk meg hogy ezek a körök visszapattanjanak a falakról.
  - Sakktábla rajzolása közösen.
+
+### Házi feladatok
+
+ - Emlékeztek a lassan követő körre? Használjuk fel azt a kódot, hogy több körünk legyen és különböző sebességgel kövessék az egeret. Mit kapunk?
+ 
