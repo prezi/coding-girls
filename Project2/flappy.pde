@@ -25,7 +25,7 @@ void setup() {
   madarMeret = 50;
   
   for(int i = 0; i < oszlopok.length; ++i) {
-    oszlopok[i] = 800 + i * (width/OSZLOPOK_SZAMA);
+    oszlopok[i] = width + i * (width/OSZLOPOK_SZAMA);
     oszlopResek[i] = random(height/4, height/2);
   }
 }
@@ -38,10 +38,7 @@ void draw() {
     oszlopRajzol();
     oszlopFrissit();
   } else {
-    fill(#000000);
-    textSize(72);
-    textAlign(CENTER);
-    text(pontSzam, width/2, height/2);
+    jatekVege();
   }
 }
 
@@ -72,9 +69,16 @@ void oszlopFrissit() {
     oszlopok[i] -= oszlopSebesseg;
     if (oszlopok[i] < -oszlopSzelesseg) {
       pontSzam += 1;
-      oszlopok[i] = 800;
+      oszlopok[i] = width;
     }
   }
+}
+
+void jatekVege() {
+  fill(#000000);
+  textSize(72);
+  textAlign(CENTER);
+  text(pontSzam, width/2, height/2);
 }
 
 boolean utkozes() {
