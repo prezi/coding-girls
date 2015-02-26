@@ -17,7 +17,7 @@ Ugyanígy megy ez a programozásban is, csak különleges szavakkal:
 
 Azért nevezzük változónak, mert a tartalma változhat: Bodri holnap lehet, hogy a kutyaketrec-2 -ben lesz. 
 
-#### Milyen beépitett típusok vannak?
+#### Milyen beépített típusok vannak?
 
 |Típus neve|Processing-beli neve|Példa|
 |---|---|---|
@@ -33,9 +33,9 @@ A formula egyszerű, de nagyszerű:
     - Megmondjuk mi a típusunk
     - Adunk egy nevet a tárolónak
 
-A nevet érdemes sokatmondónak választani. Nem baj ha túl hosszú, a cél, hogy aki olvassa a kódot az tudja, hogy miről van szó!
+A nevet érdemes sokatmondónak választani. Nem baj ha túl hosszú, a cél, hogy aki olvassa a kódot az tudja hogy miről van szó!
 
-    - Tegyünk egy egyenlőseg jelet (=). Ezzel jelöljuk, hogy ebbe a változóba értéket szeretnénk rakni
+    - Tegyünk egy egyenlőség jelet (=). Ezzel jelöljük, hogy ebbe a változóba értéket szeretnénk rakni
     - Adjuk meg az érteket amit be akarunk tölteni.
     - Ez egy utasítás, nem felejtjük le a pontosvesszőt!
 
@@ -85,7 +85,7 @@ void setup() {
 
 ### Műveletek számokkal
 
-(Majdnem)minden játszik amit csak el tudtok képzelni matekórarol. Nezzuk az `int`-eket:
+(Majdnem)minden játszik amit csak el tudtok képzelni matekóráról. Nezzuk az `int`-eket:
 
 ```Java
 // Általános -1.: összeadás
@@ -103,12 +103,12 @@ println(ennyiAlmamMaradt);
 vanEnnyiAlmam -= megettemBeloleEnnyit; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam - megettemBeloleEnnyit
 vanEnnyiAlmam += megettemBeloleEnnyit; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam + megettemBeloleEnnyit
 
-// Az 1-el való növelésre es csökkentésre is van gyorsgomb!
+// Az 1-gyel való növelésre és csökkentésre is van gyorsgomb!
 --vanEnnyiAlmam; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam - 1
 ++vanEnnyiAlmam; // ugyanaz mint: vanEnnyiAlmam = vanEnnyiAlmam + 1
 ```
 
-Itt érdemes megállni egy kicsit és megbeszélni, hogy ennek miért van értelme? Mert matekórán ugye azt tanítják, hogy ha x = x - 1, abból következik, hogy 0 = -1. Tehát fontos emlékezni, hogy ami a jobb oldalon van írva, az történik először, és az egyenlőség jele valójában nem egyenlőseget jelent, hanem értékadás.
+Itt érdemes megállni egy kicsit, és megbeszélni hogy ennek miért van értelme? Mert matekórán ugye azt tanítják, hogy ha x = x - 1, abból következik, hogy 0 = -1. Tehát fontos emlékezni, hogy ami a jobb oldalon van írva, az történik először, és az egyenlőség jele valójában nem egyenlőséget jelent, hanem értékadás.
 
 ```Java
 
@@ -122,17 +122,17 @@ int legkisebbPrimszam = 16 / 8;
 println(9 / 2);
 ```
 
-A különbség `int` és `float` között istenigazán csak az osztásban van műveletek szempontjából:
+A különbség `int` és `float` között, istenigazán, csak az osztásban van műveletek szempontjából:
 
 ```Java
-// Szerencsére itt nem egészet fogunk visszakapni
+// Szerencsére itt nem egészet fogunk visszakapni.
 float ketSzuperSzamHanyadosa = 3.141592 / 2.718781; // pi / e
 println(ketSzuperSzamHanyadosa);
 ```
 
 ### Automatikusan mozgó alakzatok
 
-Végre vége az elméletnek! Jöhet a mokázás!
+Végre vége az elméletnek! Jöhet a mókázás!
 
 Mire is jó nekünk a változó? A változókat felhasználhatjuk például egy körnek a paramétereként:
 
@@ -147,9 +147,9 @@ void setup() {
 }
 ```
 
-Miért is jó ez? Ugye tanultuk, hogy a `draw` függvény folytonfolyvást meghívódik egymás után. Egy ilyen meghívást **frame**-nek nevezünk az informatikában. Emellé a kifejezés mellé párosul a **frame rate**, ami azt takarja, hogy másodpercenként hányszor frissül a képernyő, a mi esetünkben pedig azt jelenti, hogy hányszor hívódik meg a `draw()` másodpercenként.
+Miért is jó ez? Ugye tanultuk, hogy a `draw` függvény folytonfolyvást meghívódik egymás után. Egy ilyen meghívást **frame**-nek nevezünk az informatikában. Emellé a kifejezés mellé párosul a **frame rate**, ami azt takarja, hogy másodpercenként hányszor frissül a képernyő. A mi esetünkben pedig azt jelenti, hogy hányszor hívódik meg a `draw()` másodpercenként.
 
-> Emlékeztek rá, amikor Stephen Jackson Hobbitját megnéztétek a mozikban? Valószínüleg fájt a fejetek utána, mivel radikálisan **48**-as frame rate-tel játszottak le a filmet a megszokott 24-25 helyett.
+> Emlékeztek rá amikor Stephen Jackson Hobbitját megnéztétek a mozikban? Valószínüleg fájt a fejetek utána, mivel radikálisan **48**-as frame rate-tel játszottak le a filmet a megszokott 24-25 helyett.
 
 Elkalandoztam. Szóval ez azért jó nekünk, mert ha a `draw()`-ban végzünk változtatásokat egy változón, akkor az mindig életbe fog lépni! Nézzünk egy egyszerű példát:
 
@@ -168,7 +168,7 @@ void draw() {
 }
 ```
 
-> Nem, nem csaltam. Miután beállítottuk a `size()` függvénnyel a vászon méretet, a `width` es `height` változók automatikusan beállítódnak és tudjuk őket használni bárhol a kódban.
+> Nem, nem csaltam. Miután beállítottuk a `size()` függvénnyel a vászon méretet, a `width` es `height` változók automatikusan beállítódnak, és tudjuk őket használni bárhol a kódban.
 
 Hasonlóan itt egy másik példa:
 
@@ -220,13 +220,13 @@ void draw() {
 
 > Ahogy a műveszek csinálják: A `random` egy elég nyers funkció. Általában gyakorlatban a `noise` függvényt használjak. Mi nem fogjuk, de akit érdekel utánajárhat!
 
-### A color es image típus
+### A color és image típusok
 
-Van meg két fontos típus amit sokat fogunk használni. Az egyik a `PImage`, ami képek tárolasára alkalmas. A másik a `Color`, ami pedig színekere.
+Van meg két fontos típus, amit sokat fogunk használni. Az egyik a `PImage`, ami képek tárolasára alkalmas. A másik a `Color`, ami pedig színekére.
 
 #### PImage
 
-Képeket letölthetjuk az internetről. Ekkor a Processing minden futtatás eléjen letölti a képet a memóriába.
+A képeket letölthetjük az internetről. Ekkor a Processing minden futtatás eléjen letölti a képet a memóriába.
 
 ```Java
 PImage viccesMacskasKep;
@@ -238,9 +238,9 @@ void setup() {
 }
 ```
 
-> Legyünk okosak! `draw`-ba ne tegyünk képletöltest, mert nem olcsó dolog letölteni egy képet minden frameben!
+> Legyünk okosak! A `draw`-ba ne tegyünk képletöltést, mert nem olcsó dolog letölteni egy képet minden frame-ben!
 
-Képeket betölthetünk a fájlrendszerből is. Ekkor létre kell hoznunk egy `data` könyvtárat a pde file mellett, es oda kell helyezni a filet.
+A képeket betölthetünk a fájlrendszerből is. Ekkor létre kell hoznunk egy `data` könyvtárat a pde file mellett, és oda kell helyezni a fájlt.
 
 ```Java
 PImage viccesKutyasKep;
@@ -329,7 +329,7 @@ void draw() {
 }
 ```
 
-Mit is csináltunk? A kör közepe mindig növekedni fog az egér középpontja es a kör közepének a különbségével. Ha a különbség 0, akkor a kettő pont ugyanazon a ponton van. Ez minden 2. frameben igaz is lesz, ha átgondoljuk egy picit. Így gyakorlatilag van egy olyan programunk, ahol a kör középpontja szinte rögtön odaugrik az egérre. Lassitsuk hát le!
+Mit is csináltunk? A kör közepe mindig növekedni fog az egér középpontjának es a kör közepének a különbségével. Ha a különbség 0, akkor a kettő pont ugyanazon a ponton van. Ez minden 2. frameben igaz is lesz, ha átgondoljuk egy picit. Így gyakorlatilag van egy olyan programunk, ahol a kör középpontja szinte rögtön odaugrik az egérre. Lassítsuk hát le!
 ```Java
 color hatterSzin = #A8E0CE;
 color korSzin = #A8BBE0;
@@ -360,10 +360,10 @@ A követési hányados fogja meghatározni, hogy mennyire követjük gyorsan az 
 
 ### Házi feladat
 
-1. Fejlesszük tovább a korábbi házinkat! Mozogjon a nap automatikusan. Nem kell meg azzal foglalkozni, hogy eltűnik a képernyőről. **BONUS**: Mozogjanak a felhők is automatikusan. 
-2. Szeretjük a véletlen számokat. Fejlesszünk egy olyan programot ami jol demonstrálja, hogy milyen véletlenséggel mozognak az alakzatok! Legyen több mozgó elemünk. **BONUS**: gondolkozzunk el rajta, hogy hogy lehetne a vásznon jelólni a mozgást.
+1. Fejlesszük tovább a korábbi házinkat! Mozogjon a nap automatikusan. Nem kell még azzal foglalkozni, hogy eltűnik a képernyőről. **BONUS**: Mozogjanak a felhők is automatikusan. 
+2. Szeretjük a véletlen számokat. Fejlesszünk egy olyan programot, ami jol demonstrálja hogy milyen véletlenséggel mozognak az alakzatok! Legyen több mozgó elemünk. **BONUS**: Gondolkozzunk el rajta, hogy hogy lehetne a vásznon jelölni a mozgást.
 
 Szorgalmi: 
 
 1. Lehetne valahogy gravitációt szimulálni az eddig tanultakkal?
-2. Nézzétek meg a `noise` függvényt es próbaljátok meg felhasználni valamilyen mozgásnal. Tipp: akkor lesz harmonikus, ha valamilyen korábbi változot használtok fel paraméterként.
+2. Nézzétek meg a `noise` függvényt, és próbaljátok meg felhasználni valamilyen mozgásnal. Tipp: akkor lesz harmonikus, ha valamilyen korábbi változót használtok fel paraméterként.
