@@ -7,7 +7,15 @@
 
 Mi az a változó?
 
-Képzeljünk el két ketrecet. Az egyikbe csak egy macska, a másikba csak egy kutya fér bele. Ezekből a ketrecekből lehet több darab is, egy állatmenhelyen például a sorszámmal határozzák meg. Kutya-1 a kutyaketrec 0001-ben van, kutya-2 a kutyaketrec 0002-ben, macska-1 a macskaketrec 0001-ben.  Ugyanígy megy ez a programozásban is, csak különleges szavakkal: a kutya vagy a macska a _típus_ és a ketrec a _változó_.
+Képzeljünk el két ketrecet. Az egyikbe csak egy macska, a másikba csak egy kutya fér bele. Ezekből a ketrecekből lehet több darab is, egy állatmenhelyen például a sorszámmal határozzák meg. Bodri a kutyaketrec-1 -ben van, Vahur a kutyaketrec-2 -ben, Cirmos pedig a macskaketrec-1 -ben. 
+
+Ugyanígy megy ez a programozásban is, csak különleges szavakkal: 
+
+- a kutya vagy a macska a **_típus_** 
+- a kutyaketrec-1, a kutyaketrec-2 vagy a macskaketrec-1 a **_változó_**
+- Bodri, Vahur és Cirmos pedig az **_érték_**
+
+Azért nevezzük változónak, mert a tartalma változhat: Bodri holnap lehet, hogy a kutyaketrec-2 -ben lesz. 
 
 #### Milyen beépitett típusok vannak?
 
