@@ -3,7 +3,7 @@
 
 ## Függvények, szubrutinok
 
-Nem zavart eddig senkit sem, hogy minden egyes alkalommal amikor egy kört akartunk kirajzolni, akkor ezt kellett beírnunk:
+Nem zavart eddig senkit sem, hogy minden egyes alkalommal amikor egy kört akartunk kirajzolni, akkor ezt kellett beírnunk?
 
 ```Java
 float sugar = 60;
@@ -14,7 +14,7 @@ Kérdés: Nincsen a Processingben valami egyszerű  `kor` vagy esetleg `circle` 
 
 A válasz az, hogy nincsen, de szerencsére tudunk csinálni!
 
-Függvényeket nem nehéz készíteni. Először is ki kell találnunk mit szeretne csinálni a függvényünk. Ezután meghatározzuk, hogy milyen adatokra lesz szüksége, hogy az adott műveleteket elvégezze. Hasonlóan a matematikában tanult függvényekhez, a Processingben is tudunk kimeneteket adni.
+Függvényeket nem nehéz készíteni. Először is ki kell találnunk mit szeretne csinálni a függvényünk. Ezután meghatározzuk, hogy milyen adatokra lesz szüksége hogy az adott műveleteket elvégezze. Hasonlóan a matematikában tanult függvényekhez, a Processingben is tudunk kimeneteket adni.
 
 A függvényeket csak a létrehozásuk után tudjuk használni. Itt egy egyszerű példa arra, hogy hogyan lehet egy számtani és egy mértani közepet meghatározni Processingben:
 
@@ -37,7 +37,7 @@ Ha jól megnézzük a kódot, láthatjuk, hogy nem 2, de 3 függvénydefiníció
 
 `<visszatérési típus> <függvény neve>(bemeneti változók) {...}`
 
-Az eddig tanultak alapján tudhatjuk, hogy a változókat amiket létrehozunk bemenetként csak a függvénydefinícióban használhatjuk.
+Az eddig tanultak alapján tudhatjuk, hogy a változókat amiket létrehozunk bemenetként, csak a függvénydefinícióban használhatjuk.
 
 A void függvények olyan függvények, amiknek nincsen visszatérési értékük.
 
@@ -56,7 +56,7 @@ void kor(float kozepX, float kozepY, float sugar) {
 }
 ```
 
-Beépitett függveny felüldefiniálása:
+Beépített függveny felüldefiniálása:
 
 ```Java
 boolean paused = false;
@@ -86,7 +86,7 @@ Kellemetlen órai idézet is lehet:
 
 Miután hosszú sóhajt ejtetek, nekiálltok a copypastenek, én meg gonoszan nevetve majszolom a pizzát.
 
-Annak érdekében, hogy ilyen szituáció soha ne forduljon elő, mutatok egy pár trükköt, amivel kijátszhatjátok az ilyen jellegű feladatokat.
+Annak érdekében hogy ilyen szituáció soha ne forduljon elő, mutatok egy pár trükköt, amivel kijátszhatjátok az ilyen jellegű feladatokat.
 
 ### While
 
