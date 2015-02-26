@@ -242,7 +242,7 @@ void setup() {
 
 A képeket betölthetünk a fájlrendszerből is. Ekkor létre kell hoznunk egy `data` könyvtárat a pde file mellett, és oda kell helyezni a fájlt. 
 
-> Ezt a könyvtárlétrehozást és képmásolást megteszi a processing helyettünk, ha az egérrel valahonnan "behúzzuk" a képet. Angolul ezt a műveletet _drag and drop_-nak nevezik
+> Ezt a könyvtárlétrehozást és képmásolást megteszi a processing helyettünk, ha az egérrel valahonnan "behúzzuk" a képet. Angolul ezt a műveletet _drag and drop_-nak nevezik.
 
 ```Java
 PImage viccesKutyasKep;
