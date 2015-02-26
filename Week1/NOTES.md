@@ -19,7 +19,7 @@ Processing telepítése
 
 Koordinátageometria alapok (lehet nem kell)
 
-    - rajzoljunk fel egz koordinátatengelyt
+    - rajzoljunk fel egy koordinátatengelyt
     - hogy megy a koordinátageometria a lányoknak
 
 Koordinátageometria vs Processing
