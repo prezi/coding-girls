@@ -37,11 +37,11 @@ Ez önmagában nem ad nekünk semmi információt. Nézzük hát milyen művelet
 - **És**: ha egy és műveletnek valamelyik oldalán hamis van, akkor az eredmény is hamis lesz. Processing-beli jelölése: `&&`.
 
 ```Java
-boolean nemIttamKavet = false;
-boolean kesonFekudtem = true;
+boolean buliLesz = true;
+boolean ottLesznekAHaverok = false;
 
-boolean faradtVagyokMintAtom = nemIttamKavet && kesonFekudtem;
-println(faradtVagyokMintAtom); // false
+boolean megyekBulizni = buliLesz && ottLesznekAHaverok;
+println(megyekBulizni); // false
 ```
 
 - **Vagy**: ha egy vagy műveletnek valamelyik oldalán van igaz, akkor az eredmény is igaz lesz. Processing-beli jelölése: `||`.
