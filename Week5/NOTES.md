@@ -4,9 +4,9 @@
 
 Képzeljük el az alábbi problémát: 
 
-> Rajzoljunk a vászonra 15 darab kört véletlen helyekre. Ezek után a köröket mozgassuk véletlen irányba.
+> Rajzoljunk a vászonra 30 darab kört véletlen helyekre. Ezek után a köröket mozgassuk véletlen irányba.
 
-A körök mozgatásához tárolnunk kell a pozíciójukat. Ehhez körönként 2 adat kell: egy x és egy y koordináta. Ez 30 adat amit változóként rögzítenünk kell a kódban.
+A körök mozgatásához tárolnunk kell a pozíciójukat. Ehhez körönként 2 adat kell: egy x és egy y koordináta. Ez 60 adat amit változóként rögzítenünk kell a kódban.
 
 ```Java
 void setup() {
@@ -24,7 +24,7 @@ void setup() {
 }
 ```
 
-Ha ez megvolt, akkor tárolnunk kell a sebességeket. Ez minden körnek véletlenszerű és egyedi. Kell még egy vízszintes és egy függőleges irányú sebesség minden körnek, ez még 30 változó. 
+Ha ez megvolt, akkor tárolnunk kell a sebességeket. Ez minden körnek véletlenszerű és egyedi. Kell még egy vízszintes és egy függőleges irányú sebesség minden körnek, ez még 60 változó. 
 
 ```Java
 void setup() {
