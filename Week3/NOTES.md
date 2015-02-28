@@ -1,6 +1,6 @@
 # Week 3
 
-## Day 1 - Bool algebra, bevezetés a procedurális logikába (milyen tudományos)
+## Day 1 - Boole-algebra, bevezetés a procedurális logikába (milyen tudományos)
 
 Előző alkalmakkal tanultuk, hogy hogyan működik a hétköznapok algebrája a Processingben:
 
@@ -97,7 +97,7 @@ println(tasziloBeszallhat); // false
 
 Alapjában véve a logikai műveletek nem bizonyulnak túl hasznosnak. A számokat legalább be tudtuk irni a kedvenc `ellipse` parancsunk paraméterei közé, de ezzel meg csak ezt sem tudjuk kezdeni...
 
-> **Ahogy az okos matekosok csinálják**: A bool algebra nem egy mai ötlet. Először George Bool írta le a tanulmányait ebben a témakörben valamikor a 19. században. Alapvetően halmazelméletről beszélünk ahol az "és" művelet a metszetet, a "vagy" művelet az uniót takarja. A bool algebrának kiemelkedő szerepe van a digitális elektronikában.
+> **Ahogy az okos matekosok csinálják**: A Boole-algebra nem egy mai ötlet. Először George Boole írta le a tanulmányait ebben a témakörben valamikor a 19. században. Alapvetően halmazelméletről beszélünk ahol az "és" művelet a metszetet, a "vagy" művelet az uniót takarja. A Boole-algebrának kiemelkedő szerepe van a digitális elektronikában.
 
 ### Elágazások, és logikai kontroll a programunkban
 
