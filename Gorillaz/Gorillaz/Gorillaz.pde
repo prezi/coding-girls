@@ -1,13 +1,12 @@
 //gorillak
-float gorilla1X;
-float gorilla1Y;
-PImage gorilla1;
-float gorilla2X;
-float gorilla2Y;
-PImage gorilla2;
+float gorillaX[];
+float gorillaY[];
+PImage gorilla[];
+
+
 // ki jon?
-// ez a valtozo akkor legyen igaz, ha az 1es gorilla jon
-boolean turng1;
+// ez a valtozo  0 ha az elso gorill ajon es 1 ha a masodik
+int turng;
 
 //banan
 float bananX;
@@ -21,29 +20,38 @@ boolean kiVanLove;
 
 float gravitacio;
 PImage explosion;
+boolean isGameOver;
 
 void setup() {
   size(900, 600);
 
-  gorilla1X=750;
-  gorilla1Y=height*6/8;
-  gorilla1=loadImage("cartoongorilla01-filtered.png");
+  gorillaX=new float[2];
+  gorillaY=new float[2];
+  gorilla= new PImage[2];
 
-  gorilla2X=0;
-  gorilla2Y=height*6/8;
-  gorilla2=loadImage("cartoongorilla01-filtered-mirror.png");
+  gorillaX[0]=750;
+  gorillaY[0]=height*6/8;
+  gorilla[0]=loadImage("cartoongorilla01-filtered.png");
 
-  bananX=gorilla1X;
-  bananY=gorilla1Y;
-  bananSebX=0;
-  bananSebY=0;
+  gorillaX[1]=0;
+  gorillaY[1]=height*6/8;
+  gorilla[1]=loadImage("cartoongorilla01-filtered-mirror.png");
+
+
   banana = loadImage("banana-hi.png");
+ 
+  // nem tul szep trukk: a turng-t NEM allijuk be
+  // magatol legeloszor 0 lesz, 
+  // es kesobb az erteke meg az marad ami epp
+  // igy meg ha meghivjuk a setup fuggvenyt ujra, akkor se veszik el az erteke
+  //turng=0;
   kiVanLove=false;
+  bananMasikGorillahoz();
 
   gravitacio=0.5;
 
-  turng1=true;
   explosion=loadImage("explosion.png");
+  isGameOver=false;
 }
 
 // mi tortenjen, ha lenyomjuk az egergombot?
@@ -78,41 +86,52 @@ boolean bananKintVan() {
 }
 
 void bananMasikGorillahoz() {
-  if (turng1) {
-    bananX=gorilla1X;
-    bananY=gorilla1Y;
-  } else {
-    bananX=gorilla2X+120;
-    bananY=gorilla2Y;
-  }
+  bananX=gorillaX[turng];
+  bananY=gorillaY[turng];
   bananSebX=0;
   bananSebY=0;
+
+  // a bal oldali gorillanal mashova kell tenni a banant
+  if (turng==1) {
+    bananX+=120;
+  }
 }
 
 // igaz akkor, ha a banan eltalat egy gorillat
-boolean talalat1() {
-  if (bananX>gorilla1X&& bananX<(gorilla1X+100) && bananY>gorilla1Y && bananY<(gorilla1Y+120)) {
+boolean talalat(int i) {
+  if (bananX>gorillaX[i]&& bananX<(gorillaX[i]+150) && bananY>gorillaY[i] && bananY<(gorillaY[i]+150)) {
     return true;
   }
   return false;
 }
 
 
-boolean talalat2() {
-  if (bananX>gorilla2X && bananX<(gorilla2X+100) && bananY>gorilla2Y && bananY<(gorilla2Y+100)) {
-    return true;
+void keyPressed() {
+  if (isGameOver) {
+    setup();
+    loop();
   }
-  return false;
 }
 
 void gameOver() {
-  background(#24048E);
-  fill(#19CE57);
-  rect(0, height*7/8, width, height*1/8 );
-
+  isGameOver=true;
   textSize(32);
   text("Game Over", width/2, height/2);
+
+  textSize(16);
+  text("press any key to continue", width/2, height*2/3);
+
+  noLoop();
 }
+
+void masikJon() {
+  if (turng==0) {
+    turng=1;
+  } else {
+    turng=0;
+  }
+}
+
 
 void draw() {
   //hatter kirajzolasa
@@ -120,44 +139,39 @@ void draw() {
   fill(#19CE57);
   rect(0, height*7/8, width, height*1/8 );
 
-  //gorillak kirajzolasa
-  image(gorilla1, gorilla1X, gorilla1Y, 150, 150);
-  image(gorilla2, gorilla2X, gorilla2Y, 150, 150);
-  //banan kirajzolasa
-  image(banana, bananX, bananY, 33, 33);
-
-  if (kiVanLove) {
-    moveBanana();
-  }
 
 
-  // ha talalat van, vege a jateknak
-  if (talalat1()) { 
-    gameOver();
-    image(explosion, gorilla1X, gorilla1Y, 150, 150);
-    noLoop();
-  }
-
-  if (talalat2()) {
-    gameOver();
-    PImage explosion=loadImage("explosion.png");
-    image(explosion, gorilla2X, gorilla2Y, 150, 150);
-    noLoop();
-  }
-
-  //ha leesett a banan, akkor mi tortenjen?
-  if (bananKintVan()) {
-    //megint lehet loni
-    kiVanLove=false;
-
-    //innentol  masik gorilla jon
-    if (turng1) {
-      turng1=false;
+  for (int i=0; i<2; i++) {
+    // itt fontos a teszteles sorrendje
+    // ha nincs talalat, gorillat rajzolunk, ha van, akkor robbanast
+    // a gameOver fuggvenyben a noloop megallitja a draw ismetleset
+    // de azert ez a ciklus meg lefut vegig
+    if (!talalat(i)) { 
+      image(gorilla[i], gorillaX[i], gorillaY[i], 150, 150);
     } else {
-      turng1=true;
+      image(explosion, gorillaX[i], gorillaY[i], 150, 150);
+      gameOver();
     }
-    // tegyuk vissza a banant
-    bananMasikGorillahoz();
+  }
+
+  if (!isGameOver) {
+    //banan kirajzolasa
+    image(banana, bananX, bananY, 33, 33);
+
+    // ezeket a dolgokat csak akkor erdemes megcsinalni, ha megy a jatek
+    if (kiVanLove) {
+      moveBanana();
+    }
+
+    //ha leesett a banan, akkor mi tortenjen?
+    if (bananKintVan()) {
+      //megint lehet loni
+      kiVanLove=false;
+      //innentol  masik gorilla jon
+      masikJon();
+      // tegyuk vissza a banant
+      bananMasikGorillahoz();
+    }
   }
 }
 
