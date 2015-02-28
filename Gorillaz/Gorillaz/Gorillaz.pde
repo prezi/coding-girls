@@ -3,7 +3,6 @@ float gorillaX[];
 float gorillaY[];
 PImage gorilla[];
 
-
 // ki jon?
 // ez a valtozo  0 ha az elso gorill ajon es 1 ha a masodik
 int turng;
@@ -22,24 +21,45 @@ float gravitacio;
 PImage explosion;
 boolean isGameOver;
 
+// lesznek hazak. az X a bal felso sarkuk, az Y a magassaguk
+float hazakX[];
+float hazakY[];
+color hazakSzine[];
+int hazakSzama;
+
 void setup() {
   size(900, 600);
+
+  hazakSzama=10;
+  hazakX= new float[hazakSzama];
+  hazakY= new float[hazakSzama];
+  hazakSzine = new color[hazakSzama];
+  for (int i=0; i<hazakSzama; i++) {
+    // TBD: hogyan lehetnenek a hazak random szelesseguek?
+
+    hazakX[i]=i*width/hazakSzama;
+
+    // TBD: a teljesen random hazmagassag nem az igazi. kozepen magasabbnak kene lennie
+    hazakY[i]=random(height*3/5, height*7/8);
+    hazakSzine[i]= color(random(0, 255), random(0, 255), random(0, 255));
+  }
+
 
   gorillaX=new float[2];
   gorillaY=new float[2];
   gorilla= new PImage[2];
 
+  // a gorillak alljanak a hazak tetejen
   gorillaX[0]=750;
-  gorillaY[0]=height*6/8;
+  gorillaY[0]=hazakY[hazakSzama-1]-150;
   gorilla[0]=loadImage("cartoongorilla01-filtered.png");
 
   gorillaX[1]=0;
-  gorillaY[1]=height*6/8;
+  gorillaY[1]=hazakY[0]-150;
   gorilla[1]=loadImage("cartoongorilla01-filtered-mirror.png");
 
-
   banana = loadImage("banana-hi.png");
- 
+
   // nem tul szep trukk: a turng-t NEM allijuk be
   // magatol legeloszor 0 lesz, 
   // es kesobb az erteke meg az marad ami epp
@@ -85,6 +105,22 @@ boolean bananKintVan() {
   return ret;
 }
 
+
+boolean bananHaznakutkozott() {
+  boolean ret=false;
+  // azt is ellenorizzuk, hogy nincs-e valamelyik hazban
+  float hazSzelesseg=width/hazakSzama;
+  for (int i=0; i<hazakSzama; i++) {
+    if (bananX>hazakX[i] && bananX<hazakX[i]+hazSzelesseg) {
+      if (bananY>hazakY[i]) {
+        ret=true;
+      }
+    }
+  }
+  
+  return ret;
+}
+
 void bananMasikGorillahoz() {
   bananX=gorillaX[turng];
   bananY=gorillaY[turng];
@@ -114,7 +150,10 @@ void keyPressed() {
 }
 
 void gameOver() {
+
   isGameOver=true;
+
+  fill(#ff0000);
   textSize(32);
   text("Game Over", width/2, height/2);
 
@@ -133,13 +172,23 @@ void masikJon() {
 }
 
 
-void draw() {
+void drawTerrain() {
   //hatter kirajzolasa
   background(#24048E);
   fill(#19CE57);
   rect(0, height*7/8, width, height*1/8 );
 
+  // hazak rajzolasa
+  stroke(#000000);
+  strokeWeight(3);
+  for (int i=0; i<hazakSzama; i++) {
+    fill(hazakSzine[i]);
+    rect(hazakX[i], hazakY[i], width/hazakSzama, height-hazakY[i]);
+  }
+}
 
+void draw() {
+  drawTerrain();
 
   for (int i=0; i<2; i++) {
     // itt fontos a teszteles sorrendje
