@@ -65,10 +65,10 @@ Találatkor ki kell nyírni a kacsát majd érdemes feltámasztani, hogy újra l
 
 > Az egyszerűség kedvéért a halott kacsa nálam azt jeleni, hogy a vásznon kívül rajzolom.
 
-### Játékmechanika.
+### Játékmechanika
 
-**Az idő fogalmának bevezetése.**
-A legnagyobb kihívásunk a játékosunk számára az az, hogy megtalálja-e az egeret. Hogyan tehetjük nehezebbé, izgalmasabbá? Tüntessük el a kacsát ha a játékos nem tud eléggé gyorsan rákattintani.
+#### Az idő fogalmának bevezetése
+A legnagyobb kihívásunk a játékosunk számára az, hogy megtalálja-e az egeret. Hogyan tehetjük nehezebbé, izgalmasabbá? Például eltüntethetjük a kacsát ha a játékos nem tud eléggé gyorsan rákattintani.
 Hogyan mérjük az eltelt időt a játékban? Számoljuk a frameket.
 
 Ha 1 másodperc 60 képkockának felel meg és tudjuk melyik frameben raktuk ki a kacsát akkor tudjuk figyelni, hogy eltelt-e már elég idő ahhoz, hogy a kacsát levegyük.
@@ -77,9 +77,32 @@ Ha 1 másodperc 60 képkockának felel meg és tudjuk melyik frameben raktuk ki 
 if (frameCount - kacsaSzuletett > kacsaElet * frameRate) {...}
 ```
 
+**Szorgalmi feladatok:**
+ - A kacsa eltűnési ideje legyen random bizonyos keretek között.
+ - Próbálják meg a beépített `millis()` függvénnyel megoldani a feladatot.
 
 > Az egy másodperc alatt megjelenített képkockák száma a teljesítmény függvényében változik rajzolásonként `frameRate` konstansban van tárolva.
 
-> Van persze egy beépített függvény `millis()` ami a számítógép órájából olvassa ki az ezredmásodperceket de az mi csak ellenőrzésre használjuk. MErt mi inkább gondolkodunk.
+> Van persze egy beépített függvény `millis()` ami a számítógép órájából olvassa ki az ezredmásodperceket, de ezt legfeljebb magunk ellenőrzésére használjuk.
 
-**Pontozás.**
+### Pontozás
+
+Nagyon egyszerű pontozási rendszert fogunk bevezetni. A játékos minden lelőtt kacsa után kap egy pontot. Amit ki is írunk a képernyőre.
+Ha a játékos kihagyott egy kacsát veszít az életéből, ami ha elfogy elveszíti a játékot. Ekkor egyszerűen visszaállítjuk a kezdő állapotot és újra kezdjük a játékot.
+
+**Tipikus hibák:**
+ - A megjelenő kacsa eltakarja az eredményjelzőt.
+ - Nem sikerül minden státusz változó alapértékét visszaállítani.
+
+**Szorgalmi feladatok:**
+ - Járjon pontlevonás ha a játékos nem találja el a kacsát. (félrekattint)
+ - A státuszváltozókat beállítását szervezzük ki egy függvénybe. (reset)
+ - A kacsa eltűnési ideje a lelőtt kacsák számának növekedésével csökkenjen.
+ - Minél rövidebb ideig volt kint egy kacsa a képernyőn annál több pontot érjen.
+
+#### Játék állapotának követése
+
+Adjunk a játékunknak egy keretet azzal, hogy nem azonnal indítjuk hanem csak kattintásra. Egy szép kezdőképernyőn.
+A játéknak legyen lezárása, ha a játékos elveszíti minden életét, kössük az orrára és csak kattintásra induljon újra a játék.
+
+**Tipikus hibák:**

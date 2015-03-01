@@ -1,4 +1,5 @@
 float kacsaX, kacsaY, kacsaMeret, kacsaSzuletett, kacsaElet;
+int pontszam, eletek;
 float celkeresztMeret;
 
 void setup() {
@@ -8,29 +9,57 @@ void setup() {
   kacsaMeret = 80;
   celkeresztMeret = 32;
 
+  reset();
   kacsaTeremt();
 }
 
 void draw() {
   background(#ffffff);
 
-  kacsaRajzol();
+  eredmenyjelzo();
+
+  if (eletek > 0) {
+    kacsaRajzol();
+
+    // Lusta volt a vadász, túlélte a kacsa.
+    if (frameCount - kacsaSzuletett > kacsaElet * frameRate) {
+      eletek -= 1;
+      kacsaMegol();
+      kacsaTeremt();
+    }
+
+    // Teli találat, a kacsa halott.
+    if (mousePressed && talalat()) {
+      pontszam += 1;
+      kacsaMegol();
+      kacsaTeremt();
+    }
+  } else {
+    reset();
+  }
+
   celkeresztRajzol();
+}
 
-  if (frameCount - kacsaSzuletett > kacsaElet * frameRate) {
-    kacsaMegol();
-    kacsaTeremt();
-  }
+void eredmenyjelzo() {
+  // Eredmeny csik
+  fill(0, 0, 0, 200);
+  rect(0, 0, width, 20);
 
-  if (mousePressed && talalat()) {
-     kacsaMegol();
-     kacsaTeremt();
-  }
+  // Eredmeny jelzo
+  fill(255, 255, 255);
+  text("Pontszám: " + pontszam, 80, 16);
+  text("Életek: " + eletek, 180, 16);
 }
 
 boolean talalat() {
   return mouseX >= kacsaX && mouseX <= kacsaX + kacsaMeret
       && mouseY >= kacsaY && mouseY <= kacsaY + kacsaMeret;
+}
+
+void reset() {
+  eletek = 3;
+  pontszam = 0;
 }
 
 void kacsaRajzol() {
@@ -40,8 +69,8 @@ void kacsaRajzol() {
 }
 
 void kacsaTeremt() {
-  kacsaX = random(0, width - kacsaMeret);
-  kacsaY = random(0, height - kacsaMeret);
+  kacsaX = random(20, width - kacsaMeret);
+  kacsaY = random(20, height - kacsaMeret);
   kacsaSzuletett = frameCount;
 }
 
