@@ -57,19 +57,15 @@ void madarFrissit() {
 ```
 
 Ha mindezzel megvagyunk akkor bevezethetjük az ugrálást. Ehhez a `keyPressed` beépített Processing függvényt fogjuk alkalmazni. 
+Van `keyPressed` boolean is, mint a `mousePressed`. Ne ezt használjuk, mert nem fog 100% működni, másrészt esetleg nehezebb lesz váltani, ha majd több gombot kell használni.
 
-> Megjegyzés: az alábbi kód nem szerethető:
-> 
 ```Java
-void draw() {
-  ...
-  if (keyPressed) {
+void keyPressed() {
+  if (key == ' ' ) {
     ...
   }
-  ...
 }
 ```
-> Bár a Processing elfogadja, az érzékelő nem fog 100%-ig működni. Egy programozási nyelv sem tökéletes.
 
 Az, hogy az ugrás milyen billentűre/eseményre történjen a saját döntése mindenkinek.
 
@@ -93,6 +89,13 @@ void keyPressed() {
   }
 }
 ```
+
+Aki gyors/házi:
+	rajzolás kiemelése
+	változók léptetésének kiemelése
+	madár meghal, ha kimegy(loop/noloop vagy globális változó vagy ...) lásd 4. pont
+	madár kidolgozása
+	játék a számokkal -- legyen "jó" a madár repdesése
 
 ### Oszlopok
 
