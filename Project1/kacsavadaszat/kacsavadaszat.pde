@@ -2,54 +2,63 @@ float kacsaX, kacsaY, kacsaMeret, kacsaSzuletett, kacsaElet;
 int pontszam, eletek;
 float celkeresztMeret;
 
+boolean jatekban;
+
 void setup() {
   size(800, 600);
 
   kacsaElet = 3; // masodperc
   kacsaMeret = 80;
   celkeresztMeret = 32;
+  jatekban = false;
 
   reset();
-  kacsaTeremt();
 }
 
 void draw() {
   background(#ffffff);
 
-  eredmenyjelzo();
+  if (jatekban) {
+    // Játékban vagyunk és az életek sem fogytak még el.
+    if (eletek > 0) {
+      kacsaRajzol();
 
-  if (eletek > 0) {
-    kacsaRajzol();
+      // Lusta volt a vadász, túlélte a kacsa.
+      if (frameCount - kacsaSzuletett > kacsaElet * frameRate) {
+        eletek -= 1;
+        kacsaMegol();
+        kacsaTeremt();
+      }
 
-    // Lusta volt a vadász, túlélte a kacsa.
-    if (frameCount - kacsaSzuletett > kacsaElet * frameRate) {
-      eletek -= 1;
-      kacsaMegol();
-      kacsaTeremt();
-    }
-
-    // Teli találat, a kacsa halott.
-    if (mousePressed && talalat()) {
-      pontszam += 1;
-      kacsaMegol();
-      kacsaTeremt();
+      // Teli találat, a kacsa halott.
+      if (mousePressed && talalat()) {
+        pontszam += 1;
+        kacsaMegol();
+        kacsaTeremt();
+      }
+    } else {
+      // Elfogytak az életek, megállítjuk a játékot
+      jatekban = false;
     }
   } else {
-    reset();
+    // Meg van állítva a játék, kiderítjuk miért
+    if (eletek == 0) {
+      vegeredmeny();
+    } else {
+      kezdokepernyo();
+    }
+
+    // Kattintásra újraindul a játék
+    if (mousePressed) {
+      jatekban = true;
+      reset();
+      kacsaTeremt();
+    }
   }
 
+  // Az eredményjelzőt és a célkeresztet rajzoljuk minden fölé.
+  eredmenyjelzo();
   celkeresztRajzol();
-}
-
-void eredmenyjelzo() {
-  // Eredmeny csik
-  fill(0, 0, 0, 200);
-  rect(0, 0, width, 20);
-
-  // Eredmeny jelzo
-  fill(255, 255, 255);
-  text("Pontszám: " + pontszam, 80, 16);
-  text("Életek: " + eletek, 180, 16);
 }
 
 boolean talalat() {
@@ -77,6 +86,45 @@ void kacsaTeremt() {
 void kacsaMegol() {
   kacsaX = width + kacsaMeret;
   kacsaY = height + kacsaMeret;
+}
+
+void kezdokepernyo() {
+  fill(0);
+  textSize(26);
+  String szoveg = "A játék kattintással indul.";
+  float tw = textWidth(szoveg);
+  text(szoveg, width / 2 - tw / 2, height / 2 - 13 * 1.4);
+}
+
+void vegeredmeny() {
+  String szoveg;
+  float szovegSzelesseg, szovegMagassag;
+  fill(0);
+
+  textSize(26);
+  szoveg = "Gratulálok! Vesztettél!";
+  szovegSzelesseg = textWidth(szoveg);
+  szovegMagassag = 26 * 1.4;
+  text(szoveg, width / 2 - szovegSzelesseg / 2, height / 2 - szovegMagassag);
+
+  textSize(14);
+  szoveg = "A játék kattintással újraindul!";
+  szovegSzelesseg = textWidth(szoveg);
+  szovegMagassag += 7 * 1.4;
+  text(szoveg, width / 2 - szovegSzelesseg / 2, height / 2);
+}
+
+void eredmenyjelzo() {
+  textSize(12);
+
+  // Eredmeny csik
+  fill(0);
+  rect(0, 0, width, 20);
+
+  // Eredmeny jelzo
+  fill(255);
+  text("Pontszám: " + pontszam, 80, 16);
+  text("Életek: " + eletek, 180, 16);
 }
 
 void celkeresztRajzol() {

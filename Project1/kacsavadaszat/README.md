@@ -102,7 +102,9 @@ Ha a játékos kihagyott egy kacsát veszít az életéből, ami ha elfogy elves
 
 #### Játék állapotának követése
 
-Adjunk a játékunknak egy keretet azzal, hogy nem azonnal indítjuk hanem csak kattintásra. Egy szép kezdőképernyőn.
+Adjunk a játékunknak egy keretet azzal, hogy nem azonnal indítjuk hanem csak kattintásra.
 A játéknak legyen lezárása, ha a játékos elveszíti minden életét, kössük az orrára és csak kattintásra induljon újra a játék.
 
-**Tipikus hibák:**
+**Szorgalmi feladatok:**
+ - Maximum elért pontszám tárolása a játékok folyamán.
+ - Jájék megállítása funkció. (pause)
