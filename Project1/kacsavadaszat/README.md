@@ -1,49 +1,63 @@
 # Kacsavadászat
 
-## A játék célja
+## A játék menete
 
-Kinyírni a kacsákat
+A képernyőn megjelenő kacsákat kell kattintással likvidálni. Miután megöltünk egy kacsát egy újabb fog megjelenni a képernyőn. A játékot nem lehet megnyerni, a célja minél több kacsa megölése és ezáltal minél több pont gyüjtése.
+
+A jó a játékban, hogy a fejlesztő a kacsát bármilyen képpel helyettesítheti. Cicával, kutyával, biosz tanárral.
 
 ## Fejlesztési lépések
 
-### Négyzet a képernyőn
+A játék fejlesztésének lépéseit mutatom be minden lépésben elvégezhető szorgalmi feladatokkal, amik érdekesebbé teszik a fejlesztést és a kész játékot is.
 
-Készítünk egy négyzetet ami véletlenszerűen megjelenik a vásznon.
+* [●●●●●] Nehézséget jelöli. Minél több a ● annál nehezebb a feladat.
 
-> Arra kell csak figyelni, hogy a négyzet minen pontja mindig a vásznon belül maradjon. Ehhez tudni kell, hogy a `rectMode` alapértelmezésként az alakzat bal felső sarkát számolja origónak.
+### Négyzet a képernyőn [●]
+
+Készítünk egy négyzetet ami véletlenszerűen megjelenik a vásznon. Ez lesz a kacsánk hitboxa.
 
 ```java
-// Setupba érdemes rakni, különben flash kacsa lesz :)
+// Setup
 kacsaX = random(0, width - kacsaMeret);
 kacsaY = random(0, height - kacsaMeret);
 // draw
 rect(kacsaX, kacsaY, kacsaMeret, kacsaMeret);
 ```
 
-**TODO:**
-*[szorgalmi]*
-Biztos, hogy a lesz aki szeretne a négyzet helyett "igazi" kacsát használni.
+**Tipikus hibák**
+ - A négyzet kilóg a képernyőről, mert rosszul van felparaméterezve a random.
+ - A kacsa átmegy idegbetegbe, mert a random generálás a drawba kerül.
 
-### Célkereszt rajzolása
+> A processing alapértelmezésként az alakzat bal felső sarkát számolja origónak (`rectMode()`), a körnek a kozepét(`ellispeMode()`).
 
-A célkereszt két kör ami az egeret követi. Igény szerint lehet kereszteket is rakni rá, erre van példa a programban.
+**Szorgalmi feladatok:**
+- Négyzet helyett kép vagy más alakzat használata. [●]
+
+### Célkereszt [●]
+
+A célkereszt bármilyen alakzat lehet ami az egeret követi. A példában két koncentrikus kört választottam.
 
 ```java
-// Kulso nagy karika
+// Kulső nagy karika
 noFill();
 stroke(#FF0000, 100);
 strokeWeight(2);
 ellipse(mouseX, mouseY, celkeresztMeret, celkeresztMeret);
 
-// Celzo pont
+// Celzó pont
 noStroke();
 fill(#FF0000, 100);
 ellipse(mouseX, mouseY, 2, 2);
 ```
 
-### Elsütőbillenytű
+**Szorgalmi feladatok:**
+ - A célkerszt cicomázása. [●]
 
-Kattintásra le kell lőni a kacsát. Ehhez kattintáskor meg kell nézni, hogy az egér koordinátái benne vannak-e a négyzet koordinátáiban.
+> Rengeteg féle képpen lehet cicomázni a célkeresztet, ezek többsége nem nehéz csak sokáig tart. Ne ezzel menjen el az idő!
+
+### Elsütőbillenytű [●●●]
+
+A játék célja lelőni a kacsát, ezt a már jól ismert "húzd és kattints" módszerrel csináljuk. Ehhez kattintáskor meg kell nézni, hogy az egér koordinátái benne vannak-e a négyzet koordinátáiban.
 Érdemes megint megjegyezni, hogy a kacsa bal felső sarka a kacsa origója.
 
 ```java
@@ -55,56 +69,56 @@ if (mousePressed) {
 }
 ```
 
-> Ha valakinek a kacsája esetleg kör lenne, annak most egyszerűbb dolga van, mert csak távolságot kell számolni a kör közepe és az egér koordinátái között a beépített `dist` függvénnyel.
+> Ha valakinek a kacsája közelebb áll a körhöz, mint a négyzethez, annak most egyszerűbb dolga van, mert csak távolságot kell számolni a kör közepe és az egér koordinátái között a beépített `dist` függvénnyel és megnézni, a távolság nagyobb-e a sugárnál.
 
-### Támadás pusztítás és feltámasztás
+### Támadás pusztítás és feltámasztás [●]
 
-Találatkor ki kell nyírni a kacsát majd érdemes feltámasztani, hogy újra le lehessen lőni. Ez a játék lényege. A pusztítás!
+Sikeres találatkor a kacsa meghal, le kell venni a képernyőről, majd egy újat kell a helyébe tenni.
 
-> Itt érdemes a kacsa rajzoló és kacsa feltámasztó kódot függvényekbe szervezni.
+**Szorgalmi feladatok:**
+ - érdemes a kacsa rajzoló és kacsa feltámasztó kódot függvényekbe szervezni. [●]
 
-> Az egyszerűség kedvéért a halott kacsa nálam azt jeleni, hogy a vásznon kívül rajzolom.
+> Mit jelent a halott kacsa? Tényleg szükséges megölni, vagy elég csak egy másik helyre rajzolni?
 
 ### Játékmechanika
 
-#### Az idő fogalmának bevezetése
-A legnagyobb kihívásunk a játékosunk számára az, hogy megtalálja-e az egeret. Hogyan tehetjük nehezebbé, izgalmasabbá? Például eltüntethetjük a kacsát ha a játékos nem tud eléggé gyorsan rákattintani.
-Hogyan mérjük az eltelt időt a játékban? Számoljuk a frameket.
+#### Az idő fogalmának bevezetése [●●●]
 
-Ha 1 másodperc 60 képkockának felel meg és tudjuk melyik frameben raktuk ki a kacsát akkor tudjuk figyelni, hogy eltelt-e már elég idő ahhoz, hogy a kacsát levegyük.
+A legnagyobb kihívásunk a játékosunk számára az, hogy megtalálja-e az egeret. Hogyan tehetjük nehezebbé, izgalmasabbá a vadászatot? Például eltüntethetjük a kacsát ha a játékos nem tud eléggé gyorsan rákattintani.
+Hogyan mérjük az eltelt időt a játékban? [●●●]
+
+Ha 1 másodperc 60 képkockának felel meg és tudjuk melyik frameben raktuk ki a kacsát akkor tudjuk figyelni - a framek számolásával - hogy eltelt-e már elég idő ahhoz, hogy a kacsát levegyük.
 
 ```java
 if (frameCount - kacsaSzuletett > kacsaElet * frameRate) {...}
 ```
 
 **Szorgalmi feladatok:**
- - A kacsa eltűnési ideje legyen random bizonyos keretek között.
- - Próbálják meg a beépített `millis()` függvénnyel megoldani a feladatot.
+ - A kacsa eltűnési ideje legyen random. [●●]
+ - Próbálják meg a beépített `millis()` függvénnyel megoldani a feladatot. [●●]
 
-> Az egy másodperc alatt megjelenített képkockák száma a teljesítmény függvényében változik rajzolásonként `frameRate` konstansban van tárolva.
+> Az egy másodperc alatt megjelenített képkockák száma a teljesítmény függvényében változik. A `frameRate` konstansban van tárolva az átlag.
 
-> Van persze egy beépített függvény `millis()` ami a számítógép órájából olvassa ki az ezredmásodperceket, de ezt legfeljebb magunk ellenőrzésére használjuk.
-
-### Pontozás
+### Pontozás [●●]
 
 Nagyon egyszerű pontozási rendszert fogunk bevezetni. A játékos minden lelőtt kacsa után kap egy pontot. Amit ki is írunk a képernyőre.
 Ha a játékos kihagyott egy kacsát veszít az életéből, ami ha elfogy elveszíti a játékot. Ekkor egyszerűen visszaállítjuk a kezdő állapotot és újra kezdjük a játékot.
+
+**Szorgalmi feladatok:**
+ - A státuszváltozókat beállítását szervezzük ki egy függvénybe. [●]
+ - Járjon pontlevonás ha a játékos kattint, de nem találja el a kacsát. [●●]
+ - A kacsa eltűnési ideje a lelőtt kacsák számának növekedésével csökkenjen. [●●●]
+ - Minél rövidebb ideig volt kint egy kacsa a képernyőn annál több pontot érjen. [●●●]
 
 **Tipikus hibák:**
  - A megjelenő kacsa eltakarja az eredményjelzőt.
  - Nem sikerül minden státusz változó alapértékét visszaállítani.
 
-**Szorgalmi feladatok:**
- - Járjon pontlevonás ha a játékos nem találja el a kacsát. (félrekattint)
- - A státuszváltozókat beállítását szervezzük ki egy függvénybe. (reset)
- - A kacsa eltűnési ideje a lelőtt kacsák számának növekedésével csökkenjen.
- - Minél rövidebb ideig volt kint egy kacsa a képernyőn annál több pontot érjen.
-
-#### Játék állapotának követése
+#### Játék állapotának követése [●●]
 
 Adjunk a játékunknak egy keretet azzal, hogy nem azonnal indítjuk hanem csak kattintásra.
 A játéknak legyen lezárása, ha a játékos elveszíti minden életét, kössük az orrára és csak kattintásra induljon újra a játék.
 
 **Szorgalmi feladatok:**
- - Maximum elért pontszám tárolása a játékok folyamán.
- - Jájék megállítása funkció. (pause)
+ - Maximum elért pontszám tárolása a játékok folyamán. [●]
+ - Jájék megállítása funkció. (pause) [●]

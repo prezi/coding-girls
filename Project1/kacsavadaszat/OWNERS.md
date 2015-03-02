@@ -1,1 +1,1 @@
-Oliver
+Kovács Olivér <zmetser@gmail.com>
