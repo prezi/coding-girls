@@ -26,14 +26,12 @@ void draw() {
       // Lusta volt a vadász, túlélte a kacsa.
       if (frameCount - kacsaSzuletett > kacsaElet * frameRate) {
         eletek -= 1;
-        kacsaMegol();
         kacsaTeremt();
       }
 
       // Teli találat, a kacsa halott.
       if (mousePressed && talalat()) {
         pontszam += 1;
-        kacsaMegol();
         kacsaTeremt();
       }
     } else {
@@ -83,10 +81,9 @@ void kacsaTeremt() {
   kacsaSzuletett = frameCount;
 }
 
-void kacsaMegol() {
-  kacsaX = width + kacsaMeret;
-  kacsaY = height + kacsaMeret;
-}
+/**********************
+ * Rajzoló függvények *
+ **********************/
 
 void kezdokepernyo() {
   fill(0);
@@ -128,13 +125,13 @@ void eredmenyjelzo() {
 }
 
 void celkeresztRajzol() {
-  // Kulso nagy karika
+  // Külső nagy karika
   noFill();
   stroke(#FF0000, 100);
   strokeWeight(2);
   ellipse(mouseX, mouseY, celkeresztMeret, celkeresztMeret);
 
-  // Celzo pont
+  // Célzó pont
   noStroke();
   fill(#FF0000, 100);
   ellipse(mouseX, mouseY, 2, 2);
