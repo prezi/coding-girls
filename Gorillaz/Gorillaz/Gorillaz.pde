@@ -30,6 +30,20 @@ float hazakX[];
 float hazakY[];
 color hazakSzine[];
 int hazakSzama;
+float hazSzelesseg;
+color ablakokSzine;
+color ablakokSzine2;
+
+
+color egitestekSzine;
+color egSzine;
+float holdX;
+float holdY;
+float csillagokX[];
+float csillagokY[];
+int csillagokSzama;
+
+
 float kraterekX[];
 float kraterekY[];
 int kraterekSzama;
@@ -43,25 +57,44 @@ boolean robbanasCountdown;
 void setup() {
   size(900, 600);
 
+  //hazak
   hazakSzama=10;
+  hazSzelesseg=width/hazakSzama;
   hazakX= new float[hazakSzama];
   hazakY= new float[hazakSzama];
   hazakSzine = new color[hazakSzama];
+  ablakokSzine=color(#C6C931);
+  ablakokSzine2=color(#858653);
+
   for (int i=0; i<hazakSzama; i++) {
     // TBD: hogyan lehetnenek a hazak random szelesseguek?
-
     hazakX[i]=i*width/hazakSzama;
-
     float hazSzelesseg=width/hazakSzama;
     hazakY[i]= random(abs(hazakX[i]+hazSzelesseg/2-width/2)+50, height*7/8);
     hazakSzine[i]= color(random(0, 255), random(0, 255), random(0, 255));
   }
 
+  //hold es csillagok
+  egitestekSzine=color(#FAF7B6);
+  egSzine=color(#24048E);
+  holdX=random(0, width);
+  holdY=random(0, 200);
+
+  csillagokSzama=500;
+  csillagokX=new float[csillagokSzama];
+  csillagokY=new float[csillagokSzama];
+  for (int i=0; i<csillagokSzama; i++) {
+    csillagokX[i]= random(0, width);
+    //lehet, hogy lesz olyan csillag, ami hazra esik, azt majd eltakarjuk
+    csillagokY[i]=random(0, height*7/8);
+  }
+  //tomb a kraterek nyilvantartasara
   kraterekX=new float[1];
   kraterekY=new float[1];
   kraterekSzama=0;
   kraterAtmero=50;
 
+  //gorillak adatai
   gorillaX=new float[2];
   gorillaY=new float[2];
   gorilla= new PImage[2];
@@ -77,24 +110,29 @@ void setup() {
   gorillaY[1]=hazakY[0]-gorillaHeight;
   gorilla[1]=loadImage("cartoongorilla01-filtered-mirror.png");
 
+  // banan
   banana = loadImage("banana-hi.png");
   bananMeret=30;
+
+  //gravitacio
+  gravitacio=0.5;
+  //robbanas
+  explosion=loadImage("explosion.png");
+
+  //szamolas pontossaga reajzolasok kozott
+  precision=50;
+
+  //jatek allapotai
+  kiVanLove=false;
+  bananMasikGorillahoz();
+  isGameOver=false;
+  robbanashelySzamlalo=100;
+  robbanasCountdown=false;
   // nem tul szep trukk: a turng-t NEM allijuk be
   // magatol legeloszor 0 lesz, 
   // es kesobb az erteke meg az marad ami epp
   // igy meg ha meghivjuk a setup fuggvenyt ujra, akkor se veszik el az erteke
   //turng=0;
-  kiVanLove=false;
-  bananMasikGorillahoz();
-
-  gravitacio=0.5;
-
-  explosion=loadImage("explosion.png");
-  isGameOver=false;
-
-  precision=50;
-  robbanashelySzamlalo=100;
-  robbanasCountdown=false;
 }
 
 // mi tortenjen, ha lenyomjuk az egergombot?
@@ -151,10 +189,24 @@ boolean bananHazatEr() {
   return ret;
 }
 
+/*
 boolean kraterbenVan() {
+ boolean ret=false;
+ for (int i=0; i<kraterekSzama; i++) {
+ if (sqrt(pow(abs(bananX-kraterekX[i]), 2) + pow(abs(bananY-kraterekY[i]), 2))<kraterAtmero/2 ) {
+ ret=true;
+ }
+ }
+ return ret;
+ }
+ */
+
+// masik valtozat a fuggvenybol: akarmirol meg tudja mondani, hogy kraterben van-e
+// csillagrol vagy bananrol is
+boolean kraterbenVan(float X, float Y) {
   boolean ret=false;
   for (int i=0; i<kraterekSzama; i++) {
-    if (sqrt(pow(abs(bananX-kraterekX[i]), 2) + pow(abs(bananY-kraterekY[i]), 2))<kraterAtmero/2 ) {
+    if (sqrt(pow(abs(X-kraterekX[i]), 2) + pow(abs(Y-kraterekY[i]), 2))<kraterAtmero/2 ) {
       ret=true;
     }
   }
@@ -181,9 +233,10 @@ boolean talalat(int i) {
   return false;
 }
 
-void ujKrater() {
-  kraterekX[kraterekSzama]=bananX;
-  kraterekY[kraterekSzama]=bananY;
+// akarhova tehessunk egy uj kratert
+void ujKrater(float X, float Y) {
+  kraterekX[kraterekSzama]=X;
+  kraterekY[kraterekSzama]=Y;
 
   fill(#24048E);
   noStroke();
@@ -241,29 +294,72 @@ void masikJon() {
 
 void drawTerrain() {
   //hatter kirajzolasa
-  background(#24048E);
+  // fontos a sorrend: hatulrol elore rajzolunk
+  // eloszor az eg 
+  // aztan a csillagok
+  // aztan a hazak
+  // aztan a kraterek
+  // aztan bonuszkent a kraterben levo csillagok
+
+  background(egSzine);
   fill(#19CE57);
   rect(0, height*7/8, width, height*1/8 );
 
-  // hazak rajzolasa
-  stroke(#000000);
-  strokeWeight(3);
-  for (int i=0; i<hazakSzama; i++) {
-    fill(hazakSzine[i]);
-    rect(hazakX[i], hazakY[i], width/hazakSzama, height-hazakY[i]);
+  // hold es csillagok
+  noStroke();
+  fill(egitestekSzine);
+  ellipse(holdX, holdY, 55, 55);
+
+  //csillagok
+  for (int i=0; i<csillagokSzama; i++) {
+    ellipse(csillagokX[i], csillagokY[i], 3, 3);
   }
+
+  // hazak rajzolasa
+
+  for (int i=0; i<hazakSzama; i++) {
+    stroke(#000000);
+    strokeWeight(3);
+    fill(hazakSzine[i]);
+    rect(hazakX[i], hazakY[i], hazSzelesseg, height-hazakY[i]);
+
+    // ablakok rajzolasa, sok magic numberrel
+
+    noStroke();
+    for (float j=hazakX[i]+10; j<hazakX[i]+hazSzelesseg-7; j+=20.75) {
+      for (float k=hazakY[i]+10; k<height-20; k+=45.15 ) {
+        fill(ablakokSzine);
+        if (((j*k)-floor(j*k))*10<2.5) {
+          // itt egy kis matekos trukkozes van
+          // azt szeretnem, hogy nemelyik ablak mas szinu legyen. randomot itt nem lehet hasznalni, mert akkor minden rajzolasnal mas ablak lenne sotet
+          // azt csinalom, hogy a j+k szam tortreszenek elso szamjegyet vizsgalom, hogy egy bizonyos ertek alatti-e, ami 1/3 esellyel igaz, ekkor lesz egy ablak sotet. 
+          // arra kell figyelni, hogy a j es a k valami tortszammal nojenek mindketten, kulonben az osszeguk tortresze nem fog valtozni
+          fill(ablakokSzine2);
+        }
+        rect(j, k, 7, 20);
+      }
+    }
+  }
+
 
   noStroke();
   for (int i=0; i<kraterekSzama; i++) {
-    fill(#24048E);
+    fill(egSzine);
     ellipse(kraterekX[i], kraterekY[i], kraterAtmero, kraterAtmero);
+  }
+
+  fill(egitestekSzine);
+  for (int i=0; i<csillagokSzama; i++) {
+    if (kraterbenVan(csillagokX[i], csillagokY[i])) {
+      ellipse(csillagokX[i], csillagokY[i], 3, 3);
+    }
   }
   if (robbanasCountdown) {
     if (robbanashelySzamlalo>0) {
       //csinos rajzolas, pont a krater kozepebe
       //a szamlaloval egyutt csokkeno meretben
       float robbanasMeret=kraterAtmero*robbanashelySzamlalo/100;
-      image(explosion, kraterekX[kraterekSzama-1]-robbanasMeret/2, kraterekY[kraterekSzama-1]-robbanasMeret/2, robbanasMeret,robbanasMeret);
+      image(explosion, kraterekX[kraterekSzama-1]-robbanasMeret/2, kraterekY[kraterekSzama-1]-robbanasMeret/2, robbanasMeret, robbanasMeret);
     } else {
       robbanasCountdown=false;
       robbanashelySzamlalo=120;
@@ -274,18 +370,15 @@ void drawTerrain() {
 }
 
 void preciseAnimate() {
-  //banan kirajzolasa
-  image(banana, bananX-bananMeret/2, bananY-bananMeret/2, bananMeret, bananMeret);
-
   // ezeket a dolgokat csak akkor erdemes megcsinalni, ha megy a jatek
   if (kiVanLove) {
     moveBanana();
 
 
     //ha leesett a banan, akkor mi tortenjen?
-    if (bananKintVan() && !kraterbenVan()) {
+    if (bananKintVan() && !kraterbenVan(bananX, bananY)) {
       if (bananHazatEr()) {
-        ujKrater();
+        ujKrater(bananX, bananY);
         robbanasCountdown=true;
       }
 
@@ -302,6 +395,9 @@ void preciseAnimate() {
 
 void draw() {
   drawTerrain();
+  //banan kirajzolasa
+  image(banana, bananX-bananMeret/2, bananY-bananMeret/2, bananMeret, bananMeret);
+
   for (int i=0; i<2; i++) {
     // itt fontos a teszteles sorrendje
     // ha nincs talalat, gorillat rajzolunk, ha van, akkor robbanast
