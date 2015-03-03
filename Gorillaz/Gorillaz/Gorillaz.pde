@@ -2,6 +2,9 @@
 float gorillaX[];
 float gorillaY[];
 PImage gorilla[];
+float gorillaWidth;
+float gorillaHeight;
+
 
 // ki jon?
 // ez a valtozo  0 ha az elso gorill ajon es 1 ha a masodik
@@ -10,6 +13,7 @@ int turng;
 //banan
 float bananX;
 float bananY;
+float bananMeret;
 
 // a banan sebessege
 float bananSebX;
@@ -26,6 +30,12 @@ float hazakX[];
 float hazakY[];
 color hazakSzine[];
 int hazakSzama;
+float kraterekX[];
+float kraterekY[];
+int kraterekSzama;
+float kraterAtmero; 
+
+int precision;
 
 void setup() {
   size(900, 600);
@@ -39,27 +49,33 @@ void setup() {
 
     hazakX[i]=i*width/hazakSzama;
 
-    // TBD: a teljesen random hazmagassag nem az igazi. kozepen magasabbnak kene lennie
-    hazakY[i]=random(height*3/5, height*7/8);
+    float hazSzelesseg=width/hazakSzama;
+    hazakY[i]= random(abs(hazakX[i]+hazSzelesseg/2-width/2)+50, height*7/8);
     hazakSzine[i]= color(random(0, 255), random(0, 255), random(0, 255));
   }
 
+  kraterekX=new float[1];
+  kraterekY=new float[1];
+  kraterekSzama=0;
+  kraterAtmero=50;
 
   gorillaX=new float[2];
   gorillaY=new float[2];
   gorilla= new PImage[2];
+  gorillaWidth=75;
+  gorillaHeight=85;
 
   // a gorillak alljanak a hazak tetejen
-  gorillaX[0]=750;
-  gorillaY[0]=hazakY[hazakSzama-1]-150;
+  gorillaX[0]=width-gorillaWidth;
+  gorillaY[0]=hazakY[hazakSzama-1]-gorillaWidth;
   gorilla[0]=loadImage("cartoongorilla01-filtered.png");
 
   gorillaX[1]=0;
-  gorillaY[1]=hazakY[0]-150;
+  gorillaY[1]=hazakY[0]-gorillaHeight;
   gorilla[1]=loadImage("cartoongorilla01-filtered-mirror.png");
 
   banana = loadImage("banana-hi.png");
-
+  bananMeret=30;
   // nem tul szep trukk: a turng-t NEM allijuk be
   // magatol legeloszor 0 lesz, 
   // es kesobb az erteke meg az marad ami epp
@@ -72,6 +88,8 @@ void setup() {
 
   explosion=loadImage("explosion.png");
   isGameOver=false;
+
+  precision=50;
 }
 
 // mi tortenjen, ha lenyomjuk az egergombot?
@@ -91,9 +109,9 @@ void mouseClicked() {
 }
 
 void moveBanana() {
-  bananX+=bananSebX;
-  bananY+=bananSebY;
-  bananSebY+=gravitacio;
+  bananX+=bananSebX*1/precision;
+  bananY+=bananSebY*1/precision;
+  bananSebY+=gravitacio*1/precision;
 }
 
 // ellenorizzuk, hogy a banan a palyan van-e
@@ -102,12 +120,6 @@ boolean bananKintVan() {
   if (bananX<0 || bananX>width|| bananY>height) { 
     ret=true;
   }
-  return ret;
-}
-
-
-boolean bananHaznakutkozott() {
-  boolean ret=false;
   // azt is ellenorizzuk, hogy nincs-e valamelyik hazban
   float hazSzelesseg=width/hazakSzama;
   for (int i=0; i<hazakSzama; i++) {
@@ -117,7 +129,31 @@ boolean bananHaznakutkozott() {
       }
     }
   }
-  
+  return ret;
+}
+
+boolean bananHazatEr() {
+     
+  boolean ret=false;
+  // azt is ellenorizzuk, hogy nincs-e valamelyik hazban
+  float hazSzelesseg=width/hazakSzama;
+  for (int i=0; i<hazakSzama; i++) {
+    if (bananX>hazakX[i] && bananX<hazakX[i]+hazSzelesseg) {
+      if (bananY>hazakY[i]) {
+          ret=true;
+        }
+      }
+    }
+  return ret;
+}
+
+boolean kraterbenVan() {
+  boolean ret=false;
+  for (int i=0; i<kraterekSzama; i++) {
+    if (sqrt(pow(abs(bananX-kraterekX[i]), 2) + pow(abs(bananY-kraterekY[i]), 2))<kraterAtmero/2 ) {
+      ret=true;
+    }
+  }
   return ret;
 }
 
@@ -129,18 +165,45 @@ void bananMasikGorillahoz() {
 
   // a bal oldali gorillanal mashova kell tenni a banant
   if (turng==1) {
-    bananX+=120;
+    bananX+=(gorillaWidth-10);
   }
 }
 
 // igaz akkor, ha a banan eltalat egy gorillat
 boolean talalat(int i) {
-  if (bananX>gorillaX[i]&& bananX<(gorillaX[i]+150) && bananY>gorillaY[i] && bananY<(gorillaY[i]+150)) {
+  if (bananX>gorillaX[i]&& bananX<(gorillaX[i]+gorillaWidth) && bananY>gorillaY[i] && bananY<(gorillaY[i]+gorillaHeight)) {
     return true;
   }
   return false;
 }
 
+void ujKrater() {
+  kraterekX[kraterekSzama]=bananX;
+  kraterekY[kraterekSzama]=bananY;
+
+  fill(#24048E);
+  noStroke();
+  ellipse(kraterekX[kraterekSzama], kraterekY[kraterekSzama], kraterAtmero, kraterAtmero);
+  kraterekSzama+=1;
+  if (kraterekSzama==kraterekX.length) {
+    megTobbKratert();
+  }
+}
+
+void megTobbKratert() {
+  float tempX[]= new float[kraterekSzama];
+  float tempY[]= new float[kraterekSzama];
+  for (int i=0; i<kraterekSzama; i++) {
+    tempX[i]=kraterekX[i];
+    tempY[i]=kraterekY[i];
+  }
+  kraterekX=new float[kraterekSzama*2]; 
+  kraterekY=new float[kraterekSzama*2];
+  for (int i=0; i<kraterekSzama; i++) {
+    kraterekX[i]=tempX[i];
+    kraterekY[i]=tempY[i];
+  }
+}
 
 void keyPressed() {
   if (isGameOver) {
@@ -185,7 +248,39 @@ void drawTerrain() {
     fill(hazakSzine[i]);
     rect(hazakX[i], hazakY[i], width/hazakSzama, height-hazakY[i]);
   }
+
+  noStroke();
+  for (int i=0; i<kraterekSzama; i++) {
+    fill(#24048E);
+    ellipse(kraterekX[i], kraterekY[i], kraterAtmero, kraterAtmero);
+  }
 }
+
+void preciseAnimate() {
+  //banan kirajzolasa
+  image(banana, bananX-bananMeret/2, bananY-bananMeret/2, bananMeret, bananMeret);
+ 
+  // ezeket a dolgokat csak akkor erdemes megcsinalni, ha megy a jatek
+  if (kiVanLove) {
+    moveBanana();
+
+
+    //ha leesett a banan, akkor mi tortenjen?
+    if (bananKintVan() && !kraterbenVan()) {
+      if (bananHazatEr()) {
+        ujKrater();
+      }
+
+      //megint lehet loni
+      kiVanLove=false;
+      //innentol  masik gorilla jon
+      masikJon();
+      // tegyuk vissza a banant
+      bananMasikGorillahoz();
+    }
+  }
+}
+
 
 void draw() {
   drawTerrain();
@@ -196,30 +291,16 @@ void draw() {
     // a gameOver fuggvenyben a noloop megallitja a draw ismetleset
     // de azert ez a ciklus meg lefut vegig
     if (!talalat(i)) { 
-      image(gorilla[i], gorillaX[i], gorillaY[i], 150, 150);
+      image(gorilla[i], gorillaX[i], gorillaY[i], gorillaWidth, gorillaHeight);
     } else {
-      image(explosion, gorillaX[i], gorillaY[i], 150, 150);
+      image(explosion, gorillaX[i], gorillaY[i], gorillaWidth, gorillaHeight);
       gameOver();
     }
   }
 
   if (!isGameOver) {
-    //banan kirajzolasa
-    image(banana, bananX, bananY, 33, 33);
-
-    // ezeket a dolgokat csak akkor erdemes megcsinalni, ha megy a jatek
-    if (kiVanLove) {
-      moveBanana();
-    }
-
-    //ha leesett a banan, akkor mi tortenjen?
-    if (bananKintVan()) {
-      //megint lehet loni
-      kiVanLove=false;
-      //innentol  masik gorilla jon
-      masikJon();
-      // tegyuk vissza a banant
-      bananMasikGorillahoz();
+    for (int i=0; i<precision; i++) {
+      preciseAnimate();
     }
   }
 }
