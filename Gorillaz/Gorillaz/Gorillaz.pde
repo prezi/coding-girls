@@ -4,7 +4,8 @@ float gorillaY[];
 PImage gorilla[];
 float gorillaWidth;
 float gorillaHeight;
-
+float gorillaStartY[];
+float gorillaUgralasSebY;
 
 // ki jon?
 // ez a valtozo  0 ha az elso gorill ajon es 1 ha a masodik
@@ -77,8 +78,8 @@ void setup() {
   //hold es csillagok
   egitestekSzine=color(#FAF7B6);
   egSzine=color(#24048E);
-  holdX=random(0, width);
-  holdY=random(0, 200);
+  holdX=random(50, width-50);
+  holdY=random(50, 200);
 
   csillagokSzama=500;
   csillagokX=new float[csillagokSzama];
@@ -109,6 +110,12 @@ void setup() {
   gorillaX[1]=0;
   gorillaY[1]=hazakY[0]-gorillaHeight;
   gorilla[1]=loadImage("cartoongorilla01-filtered-mirror.png");
+
+  gorillaStartY=new float[2];
+  gorillaStartY[0]=gorillaY[0];
+  gorillaStartY[1]=gorillaY[1];
+  gorillaUgralasSebY=-4;
+
 
   // banan
   banana = loadImage("banana-hi.png");
@@ -265,22 +272,22 @@ void megTobbKratert() {
 void keyPressed() {
   if (isGameOver) {
     setup();
-    loop();
+    //loop();
   }
 }
 
 void gameOver() {
-
-  isGameOver=true;
+  image(explosion, gorillaX[turng*-1+1], gorillaY[turng*-1+1], gorillaWidth, gorillaHeight);
 
   fill(#ff0000);
   textSize(32);
-  text("Game Over", width/2, height/2);
+  text("Game Over", width/2, height/4);
 
   textSize(16);
-  text("press any key to continue", width/2, height*2/3);
+  text("press any key to continue", width/2, height*0.45);
 
-  noLoop();
+  moveGorilla();
+  //noLoop();
 }
 
 void masikJon() {
@@ -373,8 +380,7 @@ void preciseAnimate() {
   // ezeket a dolgokat csak akkor erdemes megcsinalni, ha megy a jatek
   if (kiVanLove) {
     moveBanana();
-
-
+    
     //ha leesett a banan, akkor mi tortenjen?
     if (bananKintVan() && !kraterbenVan(bananX, bananY)) {
       if (bananHazatEr()) {
@@ -392,28 +398,41 @@ void preciseAnimate() {
   }
 }
 
+// gorilla ugralas
+void moveGorilla() {
+  image(gorilla[turng], gorillaX[turng], gorillaY[turng], gorillaWidth, gorillaHeight);
+  gorillaY[turng]+=gorillaUgralasSebY;
+  if (gorillaY[turng]< gorillaStartY[turng]-120 || gorillaY[turng]>gorillaStartY[turng]) {
+    gorillaUgralasSebY*=-1;
+  }
+}
 
 void draw() {
   drawTerrain();
-  //banan kirajzolasa
-  image(banana, bananX-bananMeret/2, bananY-bananMeret/2, bananMeret, bananMeret);
 
-  for (int i=0; i<2; i++) {
-    // itt fontos a teszteles sorrendje
-    // ha nincs talalat, gorillat rajzolunk, ha van, akkor robbanast
-    // a gameOver fuggvenyben a noloop megallitja a draw ismetleset
-    // de azert ez a ciklus meg lefut vegig
-    if (!talalat(i)) { 
-      image(gorilla[i], gorillaX[i], gorillaY[i], gorillaWidth, gorillaHeight);
-    } else {
-      image(explosion, gorillaX[i], gorillaY[i], gorillaWidth, gorillaHeight);
-      gameOver();
-    }
-  }
+  if (isGameOver) {
+    gameOver();
+  } else {
+    //banan kirajzolasa
+    image(banana, bananX-bananMeret/2, bananY-bananMeret/2, bananMeret, bananMeret);
 
-  if (!isGameOver) {
     for (int i=0; i<precision; i++) {
       preciseAnimate();
+    }
+    for (int i=0; i<2; i++) {
+      // itt fontos a teszteles sorrendje
+      // ha nincs talalat, gorillat rajzolunk, ha van, akkor robbanast
+      // a gameOver fuggvenyben a noloop megallitja a draw ismetleset
+      // de azert ez a ciklus meg lefut vegig
+      if (!talalat(i)) { 
+        image(gorilla[i], gorillaX[i], gorillaY[i], gorillaWidth, gorillaHeight);
+      } else {
+        isGameOver=true;
+        if (i==turng){
+          // ha magat robbantotta fel, akkor is a masik jojjon
+          masikJon();
+        }
+      }
     }
   }
 }
