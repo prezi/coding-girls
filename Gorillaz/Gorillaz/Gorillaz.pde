@@ -37,6 +37,9 @@ float kraterAtmero;
 
 int precision;
 
+int robbanashelySzamlalo;
+boolean robbanasCountdown;
+
 void setup() {
   size(900, 600);
 
@@ -90,6 +93,8 @@ void setup() {
   isGameOver=false;
 
   precision=50;
+  robbanashelySzamlalo=100;
+  robbanasCountdown=false;
 }
 
 // mi tortenjen, ha lenyomjuk az egergombot?
@@ -109,9 +114,9 @@ void mouseClicked() {
 }
 
 void moveBanana() {
-  bananX+=bananSebX*1/precision;
-  bananY+=bananSebY*1/precision;
-  bananSebY+=gravitacio*1/precision;
+  bananX+=bananSebX*0.75/precision;
+  bananY+=bananSebY*0.75/precision;
+  bananSebY+=gravitacio*0.75/precision;
 }
 
 // ellenorizzuk, hogy a banan a palyan van-e
@@ -133,17 +138,16 @@ boolean bananKintVan() {
 }
 
 boolean bananHazatEr() {
-     
   boolean ret=false;
   // azt is ellenorizzuk, hogy nincs-e valamelyik hazban
   float hazSzelesseg=width/hazakSzama;
   for (int i=0; i<hazakSzama; i++) {
     if (bananX>hazakX[i] && bananX<hazakX[i]+hazSzelesseg) {
       if (bananY>hazakY[i]) {
-          ret=true;
-        }
+        ret=true;
       }
     }
+  }
   return ret;
 }
 
@@ -254,12 +258,25 @@ void drawTerrain() {
     fill(#24048E);
     ellipse(kraterekX[i], kraterekY[i], kraterAtmero, kraterAtmero);
   }
+  if (robbanasCountdown) {
+    if (robbanashelySzamlalo>0) {
+      //csinos rajzolas, pont a krater kozepebe
+      //a szamlaloval egyutt csokkeno meretben
+      float robbanasMeret=kraterAtmero*robbanashelySzamlalo/100;
+      image(explosion, kraterekX[kraterekSzama-1]-robbanasMeret/2, kraterekY[kraterekSzama-1]-robbanasMeret/2, robbanasMeret,robbanasMeret);
+    } else {
+      robbanasCountdown=false;
+      robbanashelySzamlalo=120;
+    }
+    //logikailag nem rajzolas, de itt is lehet valtoztatni a szamlalot
+    robbanashelySzamlalo-=1;
+  }
 }
 
 void preciseAnimate() {
   //banan kirajzolasa
   image(banana, bananX-bananMeret/2, bananY-bananMeret/2, bananMeret, bananMeret);
- 
+
   // ezeket a dolgokat csak akkor erdemes megcsinalni, ha megy a jatek
   if (kiVanLove) {
     moveBanana();
@@ -269,6 +286,7 @@ void preciseAnimate() {
     if (bananKintVan() && !kraterbenVan()) {
       if (bananHazatEr()) {
         ujKrater();
+        robbanasCountdown=true;
       }
 
       //megint lehet loni
@@ -284,7 +302,6 @@ void preciseAnimate() {
 
 void draw() {
   drawTerrain();
-
   for (int i=0; i<2; i++) {
     // itt fontos a teszteles sorrendje
     // ha nincs talalat, gorillat rajzolunk, ha van, akkor robbanast
