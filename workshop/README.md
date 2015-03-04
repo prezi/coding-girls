@@ -51,12 +51,9 @@ Fruit Ninja
 
 Kor kirajzolasa es hatter beallitasa.
 
-```Java
-```
-
 #### Masodik lepes
 
-Labda leesik egyenletes sebesseggel.
+Labda leesik egyenletes sebesseggel. Valtozok bevezetese.
 
 #### Harmadik Lepes
 
@@ -68,7 +65,7 @@ Gyorsuljon. Kis beszed a fizikarol. Mi a sebesseg, mi a gyorsulas.
 
 #### Otodik lepes
 
-Ugorjon vissza.
+Ugorjon vissza. Beszed az elgazasokrol. 
 
 #### Hatodik lepes
 
@@ -76,7 +73,7 @@ Random helyen ugorjon vissza.
 
 #### Hetedik lepes
 
-Beszed az elgazasokrol. Mentorok nezzek meg, hogy tutira ne a `setup`-ba menjen a kod amit itt irunk. 
+Ha benne van az eger a korben akkor valtozzon meg a szine. Mentorok nezzek meg, hogy tutira ne a `setup`-ba menjen a kod amit itt irunk. 
 
 ```Java
 ...
@@ -126,7 +123,7 @@ void mousePressed () {
     y = height + 200;
     d = random(50, 70);
     x = random(d, width-d);
-    vy = -20;  
+    vy = -20;
   }
 }
 ```
