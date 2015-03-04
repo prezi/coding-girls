@@ -81,7 +81,7 @@ void setup() {
   holdX=random(50, width-50);
   holdY=random(50, 200);
 
-  csillagokSzama=500;
+  csillagokSzama=400;
   csillagokX=new float[csillagokSzama];
   csillagokY=new float[csillagokSzama];
   for (int i=0; i<csillagokSzama; i++) {
@@ -402,8 +402,9 @@ void preciseAnimate() {
 void moveGorilla() {
   image(gorilla[turng], gorillaX[turng], gorillaY[turng], gorillaWidth, gorillaHeight);
   gorillaY[turng]+=gorillaUgralasSebY;
-  if (gorillaY[turng]< gorillaStartY[turng]-120 || gorillaY[turng]>gorillaStartY[turng]) {
-    gorillaUgralasSebY*=-1;
+  gorillaUgralasSebY+=gravitacio;
+  if ( gorillaY[turng]>gorillaStartY[turng]) {
+    gorillaUgralasSebY-=10;
   }
 }
 
