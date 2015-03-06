@@ -1,22 +1,29 @@
 float kacsaX, kacsaY, kacsaMeret, kacsaSzuletett, kacsaElet;
 int pontszam, eletek;
-float celkeresztMeret;
+float celkeresztMeret, talajszint;
+
+PImage talaj, bokor, kacsa;
 
 boolean jatekban;
 
 void setup() {
   size(800, 600);
 
-  kacsaElet = 3; // masodperc
-  kacsaMeret = 80;
-  celkeresztMeret = 32;
-  jatekban = false;
+  talajszint = height - 205;
+  talaj = loadImage("talaj.png"); // 800x205
+  bokor = loadImage("bokor.png"); // 45x81
+  kacsa = loadImage("kacsa.png"); // 35x31
+
+  kacsaElet = 3; // másodperc
+  kacsaMeret = 35;
+  celkeresztMeret = 22;
+  jatekban = false; // Innen tudjuk, hogy a játékot kell renderelni, vagy a kezdő/vég képernyőt.
 
   reset();
 }
 
 void draw() {
-  background(#ffffff);
+  background(#64b1ff);
 
   if (jatekban) {
     // Játékban vagyunk és az életek sem fogytak még el.
@@ -55,6 +62,7 @@ void draw() {
   }
 
   // Az eredményjelzőt és a célkeresztet rajzoljuk minden fölé.
+  talajRajzol();
   eredmenyjelzo();
   celkeresztRajzol();
 }
@@ -70,14 +78,13 @@ void reset() {
 }
 
 void kacsaRajzol() {
-  fill(#BADA55);
-  noStroke();
-  rect(kacsaX, kacsaY, kacsaMeret, kacsaMeret);
+  image(kacsa, kacsaX, kacsaY);
 }
 
 void kacsaTeremt() {
+  // Nem teremthetjük a kacsát a talajszint alá
   kacsaX = random(20, width - kacsaMeret);
-  kacsaY = random(20, height - kacsaMeret);
+  kacsaY = random(20, talajszint - kacsaMeret);
   kacsaSzuletett = frameCount;
 }
 
@@ -144,4 +151,11 @@ void celkeresztRajzol() {
   rect(mouseX, mouseY - r - 3, 2, 10); // fent
   rect(mouseX + r - 6, mouseY, 10, 2); // jobb
   rect(mouseX, mouseY + r - 6, 2, 10); // lent
+}
+
+void talajRajzol() {
+  image(talaj, 0, talajszint);
+  image(bokor, 100, talajszint - 30);
+  image(bokor, 270, talajszint - 30);
+  image(bokor, 700, talajszint - 30);
 }

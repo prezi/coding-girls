@@ -1,5 +1,7 @@
 # Kacsavadászat
 
+![Képkivágás a játékból](https://www.dropbox.com/s/6eznowx4c8kne5k/Screenshot%202015-03-06%2012.29.24.png?raw=1)
+
 ## A játék menete
 
 A képernyőn megjelenő kacsákat kell kattintással likvidálni. Miután megöltünk egy kacsát egy újabb fog megjelenni a képernyőn. A játékot nem lehet megnyerni, a célja minél több kacsa megölése és ezáltal minél több pont gyüjtése.
@@ -9,6 +11,8 @@ A jó a játékban, hogy a fejlesztő a kacsát bármilyen képpel helyettesíth
 ## Fejlesztési lépések
 
 A játék fejlesztésének lépéseit mutatom be minden lépésben elvégezhető szorgalmi feladatokkal, amik érdekesebbé teszik a fejlesztést és a kész játékot is.
+
+> A fejlesztési lépések csak az alapjátékot mutatják be, a szorgalmi feladatok közül csak néhány része az én példámnak.
 
 * [●●●●●] Nehézséget jelöli. Minél több a ● annál nehezebb a feladat.
 
@@ -25,13 +29,16 @@ rect(kacsaX, kacsaY, kacsaMeret, kacsaMeret);
 ```
 
 **Tipikus hibák**
- - A négyzet kilóg a képernyőről, mert rosszul van felparaméterezve a random.
+ - A négyzet kilóg a képernyőről, mert a kacsa méretei nincsenek kivonva a vászon méretból a `random` függvényben.
  - A kacsa átmegy idegbetegbe, mert a random generálás a drawba kerül.
 
 > A processing alapértelmezésként az alakzat bal felső sarkát számolja origónak (`rectMode()`), a körnek a kozepét(`ellispeMode()`).
 
 **Szorgalmi feladatok:**
 - Négyzet helyett kép vagy más alakzat használata. [●]
+- Egyszerű környezet rajzolása. (talaj, ég, fácska, napocska) [●●]
+- Több kacsa megjelenítése a képernyőn tömbökkel. [●●●]
+- A kacsa alulról repüljön be a képernyőre. [●●●]
 
 ### Célkereszt [●]
 
@@ -76,7 +83,8 @@ if (mousePressed) {
 Sikeres találatkor a kacsa meghal, le kell venni a képernyőről, majd egy újat kell a helyébe tenni.
 
 **Szorgalmi feladatok:**
- - érdemes a kacsa rajzoló és kacsa feltámasztó kódot függvényekbe szervezni. [●]
+ - Érdemes a kacsa rajzoló és kacsa feltámasztó kódot függvényekbe szervezni. [●]
+ - A halott kacsa essen ki a képernyőről. [●●●●]
 
 > Mit jelent a halott kacsa? Tényleg szükséges megölni, vagy elég csak egy másik helyre rajzolni?
 
