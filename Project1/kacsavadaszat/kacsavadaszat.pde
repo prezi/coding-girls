@@ -1,6 +1,12 @@
-float kacsaX, kacsaY, kacsaMeret, kacsaSzuletett, kacsaElet;
-int pontszam, eletek;
-float celkeresztMeret, talajszint;
+int pontszam, eletek, kacsakAKepernyon, megoltKacsak;
+int maxKacsak = 5;
+
+float[] kacsaX = new float[maxKacsak];
+float[] kacsaY = new float[maxKacsak];
+float[] kacsaSzuletett = new float[maxKacsak];
+float[] kacsaElet = new float[maxKacsak];
+
+float celkeresztMeret, kacsaMeret, talajszint;
 
 PImage talaj, bokor, kacsa;
 
@@ -14,7 +20,8 @@ void setup() {
   bokor = loadImage("bokor.png"); // 45x81
   kacsa = loadImage("kacsa.png"); // 35x31
 
-  kacsaElet = 3; // másodperc
+  megoltKacsak = 0; // Nyomon követi, hogy mennyi kacsa halt meg azóta, hogy hozzáadtunk egy újat.
+  kacsakAKepernyon = 1;
   kacsaMeret = 35;
   celkeresztMeret = 22;
   jatekban = false; // Innen tudjuk, hogy a játékot kell renderelni, vagy a kezdő/vég képernyőt.
@@ -28,19 +35,24 @@ void draw() {
   if (jatekban) {
     // Játékban vagyunk és az életek sem fogytak még el.
     if (eletek > 0) {
+      // Megkeresi a túlélő kacsákat és újrateremti őket.
+      for (int kacsaSorszam = 0; kacsaSorszam < kacsakAKepernyon; ++kacsaSorszam) {
+        if (frameCount - kacsaSzuletett[kacsaSorszam] > kacsaElet[kacsaSorszam] * frameRate) {
+          kacsakAKepernyon = 1;
+          eletek -= 1;
+          megoltKacsak = 0;
+          kacsaTeremt(kacsaSorszam);
+        }
+      }
+
+      // Minden valahány megölt kacsa után egyel többet teremtünk. (5, 15, 30, 50, 75 )
+      if (megoltKacsak > 0 && megoltKacsak % (5 * kacsakAKepernyon) == 0 && kacsakAKepernyon < maxKacsak) {
+        megoltKacsak = 0;
+        kacsakAKepernyon += 1;
+        kacsaTeremt(kacsakAKepernyon - 1);
+      }
+
       kacsaRajzol();
-
-      // Lusta volt a vadász, túlélte a kacsa.
-      if (frameCount - kacsaSzuletett > kacsaElet * frameRate) {
-        eletek -= 1;
-        kacsaTeremt();
-      }
-
-      // Teli találat, a kacsa halott.
-      if (mousePressed && talalat()) {
-        pontszam += 1;
-        kacsaTeremt();
-      }
     } else {
       // Elfogytak az életek, megállítjuk a játékot
       jatekban = false;
@@ -57,7 +69,7 @@ void draw() {
     if (mousePressed) {
       jatekban = true;
       reset();
-      kacsaTeremt();
+      kacsaTeremt(0);
     }
   }
 
@@ -67,9 +79,20 @@ void draw() {
   celkeresztRajzol();
 }
 
-boolean talalat() {
-  return mouseX >= kacsaX && mouseX <= kacsaX + kacsaMeret
-      && mouseY >= kacsaY && mouseY <= kacsaY + kacsaMeret;
+void mousePressed() {
+  // Megkeresi a kacsát amit eltalált a játékos és újrateremti.
+  for (int kacsaSorszam = 0; kacsaSorszam < kacsakAKepernyon; ++kacsaSorszam) {
+    if (talalat(kacsaX[kacsaSorszam], kacsaY[kacsaSorszam])) {
+      megoltKacsak += 1;
+      pontszam += 1;
+      kacsaTeremt(kacsaSorszam);
+    }
+  }
+}
+
+boolean talalat(float x, float y) {
+  return mouseX >= x && mouseX <= x + kacsaMeret
+      && mouseY >= y && mouseY <= y + kacsaMeret;
 }
 
 void reset() {
@@ -78,14 +101,17 @@ void reset() {
 }
 
 void kacsaRajzol() {
-  image(kacsa, kacsaX, kacsaY);
+  for (int kacsaSorszam = 0; kacsaSorszam < kacsakAKepernyon; ++kacsaSorszam) {
+    image(kacsa, kacsaX[kacsaSorszam], kacsaY[kacsaSorszam]);
+  }
 }
 
-void kacsaTeremt() {
+void kacsaTeremt(int kacsaSorszam) {
   // Nem teremthetjük a kacsát a talajszint alá
-  kacsaX = random(20, width - kacsaMeret);
-  kacsaY = random(20, talajszint - kacsaMeret);
-  kacsaSzuletett = frameCount;
+  kacsaX[kacsaSorszam] = random(20, width - kacsaMeret);
+  kacsaY[kacsaSorszam] = random(20, talajszint - kacsaMeret);
+  kacsaSzuletett[kacsaSorszam] = frameCount;
+  kacsaElet[kacsaSorszam] = random(2, 3);
 }
 
 /**********************
