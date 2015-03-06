@@ -37,7 +37,7 @@ rect(kacsaX, kacsaY, kacsaMeret, kacsaMeret);
 **Szorgalmi feladatok:**
 - Négyzet helyett kép vagy más alakzat használata. [●]
 - Egyszerű környezet rajzolása. (talaj, ég, fácska, napocska) [●●]
-- Több kacsa megjelenítése a képernyőn tömbökkel. [●●●]
+- Több kacsa megjelenítése a képernyőn (tömbökkel). [●●●]
 - A kacsa alulról repüljön be a képernyőre. [●●●]
 
 ### Célkereszt [●]
@@ -130,3 +130,17 @@ A játéknak legyen lezárása, ha a játékos elveszíti minden életét, köss
 **Szorgalmi feladatok:**
  - Maximum elért pontszám tárolása a játékok folyamán. [●]
  - Jájék megállítása funkció. (pause) [●]
+
+
+## Néhány szorgalmi feladat kifejtése
+
+### Kacsák és egyszerű környezet rajzolása.
+
+Vigyázni kell, hogy a kacsát mindig a talajszint fölé rajzoljuk. Ha pakolunk bokrokat és fákat is, akkor simán előfordulhat, hogy a kacsa elbújik mögöttük. Ennek a projektnek a keretein belül ezzel nem érdemes foglalkozni. Úgy ahogy az alpha csatornákkal sem. Példa a képek bevezetésére: 06c01ac939c37c22611cea36ec69eeb6e02f052e
+A képeket egy androidos játékból vettem kölcsön [innen letölthetőek](https://dl.dropboxusercontent.com/u/63202557/skool/duckhunt-assets.zip).
+
+### Több kacsa megjelenítése a képernyőn.
+
+Egy kacsához 4 állapot tartozik. Az x és y koordinátája (`kacsaX`, `kacsaY`), a születési ideje (`kacsaSzuletett`) és életének a hossza (`kacsaElet`). Ezek négyen pontosan leírják a kacsát.
+Ahhoz, hogy több kacsa megjelenhessen a képernyőn ezekből kell többet csinálni. - A játékunk már elég nehéz 2 kacsával is így a tömbök használata akár opcionális is lehet ebben a szorgalmiban.
+A naív megközelítése a problémának, az, hogy a fenti változók minden előfordulásához berakunk egy ciklust. Lásd: 186c843efe5077d1f575dbe256d0c1a3f7e92e1f
