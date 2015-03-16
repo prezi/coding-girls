@@ -23,11 +23,13 @@ Ezután a fegyver könnyen megrajzolható. Érdemes már most az elején függv�
 
 ```Java
 float fegyverPozicioX;
+color fegyverSzin;
 
 void setup() {
   size(800, 600);
   
   fegyverPozicioX = (width + 40)/2;
+  fegyverSzin = #777777;
 }
 
 void draw() {
@@ -36,8 +38,8 @@ void draw() {
 }
 
 void fegyverRajzol() {
-  stroke(#777777);
-  fill(#777777);
+  stroke(fegyverSzin);
+  fill(fegyverSzin);
   arc(fegyverPozicioX, height - 30, 40, 40, PI, TWO_PI);
   rect(fegyverPozicioX - 1.5, height - 60, 3, 10);
 }
@@ -76,10 +78,10 @@ void draw() {
 }
 
 void keyPressed() {
-  if ('A' == keyCode) {
+  if (keyCode == 'A') {
     fegyverPozicioX += -13;
   } else
-    if ('D' == keyCode) {
+    if (keyCode == 'D') {
     fegyverPozicioX += +13;
   } 
 }
@@ -87,8 +89,8 @@ void keyPressed() {
 ```
 
 Bónusz feladat és/vagy házi
-  - Rajzolás kiemelése
-  - A fegyver ne tudjon kimenni a képernyőről
+	Rajzolás kiemelése
+	A fegyver ne tudjon kimenni a képernyőről
 
 ## Ufók
 
@@ -105,16 +107,18 @@ float ufoSzelesseg = 30;
 float ufoMagassag = 20;
 float ufoEltolasOldalra;
 float UFO_SEBESSEG = 5;
+color ufoSzin;
 
 void setup() {
   ...
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-    ufoPozicioX[idx] = width / 2 - (ufoPozicioX.length/2 * (ufoSzelesseg * 2.5)) + (ufoSzelesseg * 2.5 * idx);  
-    ufoPozicioY[idx] = 100;
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+    ufoPozicioX[i] = width / 2 - (ufoPozicioX.length/2 * (ufoSzelesseg * 2.5)) + (ufoSzelesseg * 2.5 * i);  
+    ufoPozicioY[i] = 100;
   }
 
   ufoEltolasOldalra = -UFO_SEBESSEG;
   ufoMozogLe = false;
+  ufoSzin = color(#F0DE11);
 }
 
 void draw() {
@@ -126,33 +130,32 @@ void draw() {
 ...
 
 void ufoRajzol() {
-  stroke(#F0DE11);
-  fill(#F0DE11);
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-      ellipse(ufoPozicioX[idx], ufoPozicioY[idx], ufoSzelesseg, ufoMagassag);
+  stroke(ufoSzin);
+  fill(ufoSzin);
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+    if (ufoPozicioX[i] > 0)
+      ellipse(ufoPozicioX[i], ufoPozicioY[i], ufoSzelesseg, ufoMagassag);
   }
 }
 
 void ufoMozgatOldalra() {
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-    ufoPozicioX[idx] += ufoEltolasOldalra;
-    if (0 >= ufoPozicioX[idx]) {
-      ufoEltolasOldalra = UFO_SEBESSEG;
-      break;
-    }
-    if (width <= ufoPozicioX[idx]) {
-      ufoEltolasOldalra = -UFO_SEBESSEG;
-      break;
-    }
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+      ufoPozicioX[i] += ufoEltolasOldalra;
+      if (balMargo >= ufoPozicioX[i]) {
+        ufoEltolasOldalra = UFO_SEBESSEG;
+        ufoMozogLe = true;
+      } else
+        if (jobbMargo <= ufoPozicioX[i]) {
+        ufoEltolasOldalra = -UFO_SEBESSEG;
+        ufoMozogLe = true;
+      }
   }
 }
 ```
 
-> A tömbös rajzolásnál érdemes egy picit elidőzni a `break` és `continue` utasításoknál, hogy mit is jelentenek és mire jók. Esetleg megnézni, hogy mi történik, ha nem használjuk.
-
 Bónusz feladat és/vagy házi
-  - Ne engedjük az ufókat teljesen a képernyő széléig, legyen egy margó
-  - Ha a képernyő szélére kerülnek az ufók, akkor menjenek egy sorral lejjebb és utána menjenek a másik képernyő széle felé
+	Ne engedjük az ufókat teljesen a képernyő széléig, legyen egy margó
+	Ha a képernyő szélére kerülnek az ufók, akkor menjenek egy sorral lejjebb és utána menjenek a másik képernyő széle felé
 	
 ## Lézerlövés és találat
 
@@ -166,40 +169,40 @@ Annyi, ha találat érte az ufót, akkor azt az ufót többet már nem rajzoljuk
 ```Java
 void keyPressed() {
 ...
-    if (' ' == keyCode) {
-    	LezerLoves();
-    	LovestEllenoriz();
+    if (keyCode == ' ') {
+       lezerLoves();
+       lovestEllenoriz();
   	}
 }
 
 void ufoRajzol() {
 ...
-	if (0 < ufoPozicioX[idx])
-   		ellipse(ufoPozicioX[idx], ufoPozicioY[idx], ufoSzelesseg, ufoMagassag);
+    if (ufoPozicioX[i] > 0)
+      ellipse(ufoPozicioX[i], ufoPozicioY[i], ufoSzelesseg, ufoMagassag);
 ...
 }
 
 void ufoMozgatOldalra() {
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-    if (0 > ufoPozicioX[idx])
-      continue;
-	...
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+    if (ufoPozicioX[i] > 0) {
+      ufoPozicioX[i] += ufoEltolasOldalra;
+	  ...
+	}
   }
 }
 
-void LezerLoves() {
-  stroke(#990000);
-  fill(#990000);
+void lezerLoves() {
+  stroke(lezerSzin);
+  fill(lezerSzin);
   rect(fegyverPozicioX - 1.5, 0, 3, height - 60);
 }
 
-void LovestEllenoriz() {
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-    if (0 > ufoPozicioX[idx])
-      continue;
-
-    if (ufoPozicioX[idx] - ufoSzelesseg / 2 < fegyverPozicioX && fegyverPozicioX < ufoPozicioX[idx] + ufoSzelesseg / 2)
-      ufoPozicioX[idx] = -1;
+void lovestEllenoriz() {
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+    if (ufoPozicioX[i] > 0) {
+      if (ufoPozicioX[i] - ufoSzelesseg / 2 < fegyverPozicioX && fegyverPozicioX < ufoPozicioX[i] + ufoSzelesseg / 2)
+        ufoPozicioX[i] = -1;
+      }
   }
 }
 ```
@@ -209,9 +212,10 @@ void LovestEllenoriz() {
 Ha minden jól ment, akkor a lényegi, kötelező részével készen is vagyunk, most már csak játszani kell és csinosítgatni. :-)
 
 Az alábbiakat lehet hozzátenni még:
-  - Legyen vége a játéknak, ha kilőttünk minden ufót (győzelem)
-  - Legyen vége a játéknak, ha az ufók olyan alacsonyra süllyednek mint a fegyver (game over)
-  - Pontozni is lehet mennyi ufót löttünk ki
-  - Random mindig új ufót lehet betenni a képernyő tetejére, ha kilövünk egyet
-  - Képeket lehet használni
-  - Openprocessingre kitétel
+	Legyen vége a játéknak, ha kilőttünk minden ufót (győzelem)
+	Legyen vége a játéknak, ha az ufók olyan alacsonyra süllyednek mint a fegyver (game over)
+	Pontozni is lehet mennyi ufót löttünk ki
+	Random mindig új ufót lehet betenni a képernyő tetejére, ha kilövünk egyet
+	Képeket lehet használni
+	Openprocessingre kitétel
+
