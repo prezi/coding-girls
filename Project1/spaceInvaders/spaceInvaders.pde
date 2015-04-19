@@ -8,111 +8,33 @@ float ufoMagassag = 20;
 float ufoEltolasOldalra;
 float UFO_SEBESSEG = 5;
 boolean ufoMozogLe = false;
+color ufoSzin;
 
 float balMargo;
 float jobbMargo;
 
 float fegyverPozicioX;
-
-float mousePrevX;
+color fegyverSzin;
+color lezerSzin;
 
 void setup() {
   size(1024, 600);
 
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-    ufoPozicioX[idx] = width / 2 - (ufoPozicioX.length/2 * (ufoSzelesseg * 2.5)) + (ufoSzelesseg * 2.5 * idx);  
-    ufoPozicioY[idx] = 100;
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+    ufoPozicioX[i] = width / 2 - (ufoPozicioX.length/2 * (ufoSzelesseg * 2.5)) + (ufoSzelesseg * 2.5 * i);  
+    ufoPozicioY[i] = 100;
   }
 
   ufoEltolasOldalra = -UFO_SEBESSEG;
   ufoMozogLe = false;
+  ufoSzin = color(#F0DE11);
 
   balMargo = width / 10;
   jobbMargo = width - width / 10;
 
   fegyverPozicioX = (width + 40)/2;
-  mousePrevX = 0;
-}
-
-void fegyverRajzol() {
-  stroke(#777777);
-  fill(#777777);
-  arc(fegyverPozicioX, height - 30, 40, 40, PI, TWO_PI);
-  rect(fegyverPozicioX - 1.5, height - 60, 3, 10);
-}
-
-void LezerLoves() {
-  stroke(#990000);
-  fill(#990000);
-  rect(fegyverPozicioX - 1.5, 0, 3, height - 60);
-}
-
-void ufoRajzol() {
-  stroke(#F0DE11);
-  fill(#F0DE11);
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-    if (0 < ufoPozicioX[idx])
-      ellipse(ufoPozicioX[idx], ufoPozicioY[idx], ufoSzelesseg, ufoMagassag);
-  }
-}
-
-void ufoMozgatOldalra() {
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-    if (0 > ufoPozicioX[idx])
-      continue;
-    ufoPozicioX[idx] += ufoEltolasOldalra;
-    if (balMargo >= ufoPozicioX[idx]) {
-      ufoEltolasOldalra = UFO_SEBESSEG;
-      ufoMozogLe = true;
-      break;
-    }
-    if (jobbMargo <= ufoPozicioX[idx]) {
-      ufoEltolasOldalra = -UFO_SEBESSEG;
-      ufoMozogLe = true;
-      break;
-    }
-  }
-}
-
-void ufoMozgatLefele() {
-  if (!ufoMozogLe)
-    return;
-  ufoMozogLe = false;
-  for (int idx = 0; idx < ufoPozicioY.length; ++idx) {
-    if (0 > ufoPozicioY[idx])
-      continue;
-    ufoPozicioY[idx] += ufoMagassag;
-  }
-}
-
-void keyPressed() {
-  if ('A' == keyCode) {
-    fegyverPozicioX += -13;
-  } else
-    if ('D' == keyCode) {
-    fegyverPozicioX += +13;
-  } else
-    if (' ' == keyCode) {
-    LezerLoves();
-    LovestEllenoriz();
-  } else
-    if ('R' == keyCode) {
-    setup();
-  }
-}
-
-void mouseMoved() {
-  fegyverPozicioX = mouseX - mousePrevX;
-}
-
-void LovestEllenoriz() {
-  for (int idx = 0; idx < ufoPozicioX.length; ++idx) {
-    if (0 > ufoPozicioX[idx])
-      continue;
-
-    if (ufoPozicioX[idx] - ufoSzelesseg / 2 < fegyverPozicioX && fegyverPozicioX < ufoPozicioX[idx] + ufoSzelesseg / 2)
-      ufoPozicioX[idx] = -1;
-  }
+  fegyverSzin = #777777;
+  lezerSzin = #AA0000;
 }
 
 void draw() {
@@ -123,4 +45,82 @@ void draw() {
 
   ufoRajzol();
   fegyverRajzol();
+}
+
+void fegyverRajzol() {
+  stroke(fegyverSzin);
+  fill(fegyverSzin);
+  arc(fegyverPozicioX, height - 30, 40, 40, PI, TWO_PI);
+  rect(fegyverPozicioX - 1.5, height - 60, 3, 10);
+}
+
+void ufoRajzol() {
+  stroke(ufoSzin);
+  fill(ufoSzin);
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+    if (ufoPozicioX[i] > 0)
+      ellipse(ufoPozicioX[i], ufoPozicioY[i], ufoSzelesseg, ufoMagassag);
+  }
+}
+
+void ufoMozgatOldalra() {
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+    if (ufoPozicioX[i] > 0) {
+      ufoPozicioX[i] += ufoEltolasOldalra;
+      if (balMargo >= ufoPozicioX[i]) {
+        ufoEltolasOldalra = UFO_SEBESSEG;
+        ufoMozogLe = true;
+      } else
+        if (jobbMargo <= ufoPozicioX[i]) {
+        ufoEltolasOldalra = -UFO_SEBESSEG;
+        ufoMozogLe = true;
+      }
+    }
+  }
+}
+
+void ufoMozgatLefele() {
+  if (ufoMozogLe) {
+    ufoMozogLe = false;
+    for (int i = 0; i < ufoPozicioY.length; i++) {
+      if (ufoPozicioY[i] > 0) {
+        ufoPozicioY[i] += ufoMagassag;
+      }
+    }
+  }
+}
+
+void keyPressed() {
+  if (keyCode == 'A') {
+    fegyverPozicioX += -13;
+  } else
+    if (keyCode == 'D') {
+    fegyverPozicioX += +13;
+  } else
+    if (keyCode == ' ') {
+    lezerLoves();
+    lovestEllenoriz();
+  } else
+    if (keyCode == 'R') {
+    setup();
+  }
+}
+
+void lezerLoves() {
+  stroke(lezerSzin);
+  fill(lezerSzin);
+  rect(fegyverPozicioX - 1.5, 0, 3, height - 60);
+}
+
+void lovestEllenoriz() {
+  for (int i = 0; i < ufoPozicioX.length; i++) {
+    if (ufoPozicioX[i] > 0) {
+      if (ufoPozicioX[i] - ufoSzelesseg / 2 < fegyverPozicioX && fegyverPozicioX < ufoPozicioX[i] + ufoSzelesseg / 2)
+        ufoPozicioX[i] = -1;
+      }
+  }
+}
+
+void mouseMoved() {
+  fegyverPozicioX = mouseX;
 }
