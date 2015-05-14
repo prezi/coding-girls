@@ -1,2 +1,2 @@
-skool-curriculum-highschoolers
+coding-girls
 ==============================
