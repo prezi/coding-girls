@@ -28,6 +28,8 @@ Mentsd el az Anna mappába pelda.pde néven. Itt is figyelj arra, hogy mentsnél
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+
     <title>Hello Web - Processing.js Test</title>
     <script src="processing.min.js"></script>
 </head>
