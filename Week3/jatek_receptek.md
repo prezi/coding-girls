@@ -8,6 +8,7 @@
 6. ne teljesen függőlegesen mozogjon, hanem kicsi ívben. 
 
 adjunk hozzá játékszabályokat: mi történik ha eltaláljuk a labdát? mi ha nem? kapunk pontot? nő, csökken a mérete, a sebessége?  képek, hang, effektek, kiírások érnek!
+
 +1 tegyünk be akadályokat a pályára, amin nem tud átmenni a labda. Hanem pl visszapattan, vagy felrobban, de büntipontot kapunk, stb.
 
 
@@ -24,4 +25,5 @@ adjunk hozzá játékszabályokat: mi történik ha eltaláljuk a labdát? mi ha
 
 adjunk hozzá játékszabályokat: mi történik ha célba találunk? mi történik, ha nem? kapunk pontot? felrobban valami? 
 képek, hang, effektek, kiírások érnek!
+
 +1 tegyünk be egy pár akadályt, amin nem tud átmenni a labda. Hanem pl visszapattan, vagy felrobban, de büntipontot kapunk, stb.
