@@ -1,1 +1,0 @@
-Kovács Olivér <zmetser@gmail.com>
